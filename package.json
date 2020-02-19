@@ -1,26 +1,26 @@
 {
   "name": "cra-template-redux-typescript",
   "version": "0.0.1",
-  "description": "The official Redux+TS template for Create React App",
-  "main": "template.json",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "ttps://github.com/reduxjs/cra-template-redux-typescript.git"
-  },
   "keywords": [
-    "redux",
-    "typescript",
     "react",
     "create-react-app",
-    "template"
+    "template",
+    "typescript",
+    "redux"
   ],
-  "author": "",
+  "description": "The official Redux+TS template for Create React App",
+  "main": "template.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reduxjs/cra-template-redux-typescript.git"
+  },
   "license": "MIT",
+  "engines": {
+    "node": ">=8.10"
+  },
   "bugs": {
     "url": "https://github.com/reduxjs/cra-template-redux-typescript/issues"
   },
-  "homepage": "https://github.com/reduxjs/cra-template-redux-typescript#readme",
   "files": [
     "template",
     "template.json"
