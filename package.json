@@ -11,7 +11,9 @@
     "create-react-app",
     "template",
     "typescript",
-    "redux"
+    "redux",
+    "reduxjs",
+    "react-redux"
   ],
   "description": "The official Redux+TS template for Create React App",
   "main": "template.json",
