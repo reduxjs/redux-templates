@@ -1,10 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface CounterState {
+  value: number;
+}
+
+const initialState: CounterState = {
+  value: 0,
+}
+
 export const slice = createSlice({
   name: 'counter',
-  initialState: {
-    value: 0,
-  },
+  initialState,
   reducers: {
     increment: state => {
       // Redux Toolkit allows us to 'mutate' the state. It doesn't actually
@@ -22,9 +28,7 @@ export const slice = createSlice({
   },
 });
 
-export type State = ReturnType<typeof slice.reducer>;
-
-export const selectCount = (state: { counter: State }) => state.counter.value;
+export const selectCount = (state: { counter: CounterState }) => state.counter.value;
 export const { increment, decrement, incrementByAmount } = slice.actions;
 
 export default slice.reducer;
