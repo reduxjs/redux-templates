@@ -1,12 +1,19 @@
 {
   "name": "cra-template-redux-typescript",
   "version": "0.0.1",
+  "scripts": {
+    "prettify": "prettier --trailing-comma es5 --single-quote --write './template/src/**/*.{ts,tsx}'",
+    "lint": "eslint './template/src/**/*.{ts,tsx}'",
+    "type-check": "cd template && tsc --noEmit"
+  },
   "keywords": [
     "react",
     "create-react-app",
     "template",
     "typescript",
-    "redux"
+    "redux",
+    "reduxjs",
+    "react-redux"
   ],
   "description": "The official Redux+TS template for Create React App",
   "main": "template.json",
@@ -24,5 +31,36 @@
   "files": [
     "template",
     "template.json"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "@reduxjs/toolkit": "^1.2.5",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.12.28",
+    "@types/react": "^16.9.21",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.7.2",
+    "eslint-config-react-app": "^5.1.0",
+    "eslint-plugin-flowtype": "^4.5.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.2.0",
+    "react-scripts": "^3.4.0",
+    "react-test-renderer": "^16.12.0",
+    "redux": "^4.0.4",
+    "typescript": "~3.8.2"
+  }
 }
