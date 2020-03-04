@@ -37,7 +37,7 @@ export const selectCount = (state: { counter: CounterState }) =>
 
 export const { increment, decrement, incrementByAmount } = slice.actions;
 
-export const incrementAsync = (): AppThunk => (dispatch) => {
+export const incrementAsync = (): AppThunk => dispatch => {
   setTimeout(() => {
     dispatch(increment());
   }, 1000);
