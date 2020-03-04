@@ -4,6 +4,7 @@ import {
   decrement,
   increment,
   incrementByAmount,
+  incrementAsync,
   selectCount,
 } from './counterSlice';
 import styles from './Counter.module.css';
@@ -48,6 +49,14 @@ export function Counter() {
           }
         >
           Add Amount
+        </button>
+      </div>
+      <div className={styles.row}>
+        <button
+          className={styles.asyncButton}
+          onClick={() => dispatch(incrementAsync())}
+        >
+          Add Async
         </button>
       </div>
     </div>
