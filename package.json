@@ -4,6 +4,7 @@
   "scripts": {
     "prettify": "prettier --write './template/src/**/*.{ts,tsx}'",
     "lint": "eslint './template/src/**/*.{ts,tsx}'",
+    "test": "jest",
     "type-check": "tsc"
   },
   "keywords": [
