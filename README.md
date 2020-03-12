@@ -1,4 +1,7 @@
 # cra-template-redux-typescript
+[![build status](https://img.shields.io/travis/com/reduxjs/cra-template-redux-typescript/master.svg?style=flat-square)](https://travis-ci.com/reduxjs/cra-template-redux-typescript)
+[![npm version](https://img.shields.io/npm/v/cra-template-redux-typescript.svg?style=flat-square)](https://www.npmjs.com/package/cra-template-redux-typescript)
+[![npm downloads](https://img.shields.io/npm/dm/cra-template-redux-typescript.svg?style=flat-square)](https://www.npmjs.com/package/cra-template-redux-typescript)
 
 The official Redux+TS template for [Create React App](https://github.com/facebook/create-react-app).
 
