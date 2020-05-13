@@ -1,5 +1,5 @@
 {
-  "name": "cra-template-redux-typescript",
+  "name": "cra-template-bornfight",
   "version": "1.0.1",
   "scripts": {
     "prettify": "prettier --trailing-comma es5 --single-quote --write './template/src/**/*.{ts,tsx}'",
@@ -15,18 +15,18 @@
     "reduxjs",
     "react-redux"
   ],
-  "description": "The official Redux+TS template for Create React App",
+  "description": "Bornfight's custom Create React App template",
   "main": "template.json",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reduxjs/cra-template-redux-typescript.git"
+    "url": "https://github.com/bornfight/cra-template-redux-typescript"
   },
   "license": "MIT",
   "engines": {
     "node": ">=8.10"
   },
   "bugs": {
-    "url": "https://github.com/reduxjs/cra-template-redux-typescript/issues"
+    "url": "https://github.com/bornfight/cra-template-redux-typescript/issues"
   },
   "files": [
     "template",
@@ -53,8 +53,6 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
-    "jest": "^24.9.0",
-    "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",

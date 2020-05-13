@@ -1,0 +1,9 @@
+{
+    "baseUrl": "http://localhost:3000",
+    "COMMENT:numTestsKeptInMemory": "to prevent chrome crashing after large snapshots - default is 30",
+    "numTestsKeptInMemory": 2,
+    "integrationFolder": "cypress/tests/e2e",
+    "env": {
+        "API_URL": "http://127.0.0.1:8000"
+    }
+}

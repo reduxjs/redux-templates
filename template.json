@@ -1,7 +1,12 @@
 {
   "package": {
     "dependencies": {
+      "@bornfight/prettier": "^1.0.0.",
+      "@commitlint/cli": "^8.3.5",
+      "@commitlint/config-conventional": "^8.3.4",
       "@reduxjs/toolkit": "^1.2.5",
+      "@storybook/react": "^5.3.18",
+      "@storybook/preset-typescript": "^3.0.0",
       "@testing-library/react": "^9.3.2",
       "@testing-library/jest-dom": "^4.2.4",
       "@testing-library/user-event": "^7.1.2",
@@ -10,8 +15,40 @@
       "@types/react-dom": "^16.9.0",
       "@types/react-redux": "^7.1.7",
       "@types/jest": "^24.0.0",
+      "auto-changelog": "^2.0.0",
       "react-redux": "^7.2.0",
-      "typescript": "~3.8.2"
+      "require-context.macro": "^1.2.2",
+      "typescript": "~3.8.2",
+      "cypress": "^4.5.0",
+      "cypress-plugin-tab": "^1.0.5",
+      "eslint-plugin-cypress": "^2.10.3",
+      "husky": "^4.2.5",
+      "jest": "^24.9.0",
+      "lint-staged": "^10.2.2",
+      "prettier": "@bornfight/prettier",
+      "react-router": "5.2.0",
+      "react-router-dom": "^5.2.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject",
+      "format-with-prettier": "prettier --write src/**/*.{ts,tsx}",
+      "cypress-open-integration": "cypress open --config-file cypress/cypress-integration.json",
+      "cypress-open-e2e": "cypress open --config-file cypress/cypress-e2e.json",
+      "storybook": "start-storybook -p 9002 -c .storybook",
+      "version": "auto-changelog -p && git add CHANGELOG.md",
+      "husky:pre-commit": "yarn pretty-quick --staged"
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "yarn husky:pre-commit",
+        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      }
+    },
+    "lint-staged": {
+      "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
     }
   }
 }
