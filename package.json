@@ -1,10 +1,11 @@
 {
   "name": "cra-template-redux-typescript",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
-    "prettify": "prettier --trailing-comma es5 --single-quote --write './template/src/**/*.{ts,tsx}'",
+    "prettify": "prettier --write './template/src/**/*.{ts,tsx}'",
     "lint": "eslint './template/src/**/*.{ts,tsx}'",
-    "type-check": "cd template && tsc --noEmit"
+    "test": "jest",
+    "type-check": "tsc"
   },
   "keywords": [
     "react",
