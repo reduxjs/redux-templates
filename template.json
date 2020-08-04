@@ -29,6 +29,9 @@
       "react-router": "5.2.0",
       "react-router-dom": "^5.2.0"
     },
+    "devDependencies": {
+      "pretty-quick": "^2.0.1"
+    },
     "scripts": {
       "start": "react-scripts start",
       "build": "react-scripts build",
