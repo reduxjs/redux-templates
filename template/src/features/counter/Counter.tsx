@@ -9,13 +9,18 @@ import {
 } from './counterSlice';
 import styles from './Counter.module.css';
 
-export const Counter: React.FC = () => {
+interface IPropsCounter {
+  title: string;
+}
+
+export const Counter: React.FC<IPropsCounter> = ({ title }: IPropsCounter) => {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   return (
     <div>
+      <h3>{title}</h3>
       <div className={styles.row}>
         <button
           className={styles.button}
