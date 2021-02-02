@@ -13,4 +13,12 @@ describe('counter reducer', () => {
     ).toEqual({ value: 4 });
   });
 
+
+  it('should handle decrement', () => {
+    expect(
+      counter({ value: 4 }, {
+        type: 'counter/decrement',
+      })
+    ).toEqual({ value: 3 });
+  });
 })
