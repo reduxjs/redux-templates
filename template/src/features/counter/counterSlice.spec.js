@@ -5,6 +5,7 @@ describe('counter reducer', () => {
     expect(counter(undefined, {})).toEqual({value: 0})
   })
 
+ 
   it('should handle increment', () => {
     expect(
       counter({ value: 3 }, {
@@ -20,5 +21,15 @@ describe('counter reducer', () => {
         type: 'counter/decrement',
       })
     ).toEqual({ value: 3 });
+  });
+
+
+  it('should handle incrementByAmount', () => {
+    expect(
+      counter({ value: 10 }, {
+        type: 'counter/incrementByAmount',
+        payload: 2
+      })
+    ).toEqual({ value: 12 });
   });
 })
