@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.row > button {
+  margin-left: 4px;
+  margin-right: 8px;
+}
+
 .row:not(:last-child) {
   margin-bottom: 16px;
 }
@@ -37,10 +42,11 @@
   padding: 2px;
   width: 64px;
   text-align: center;
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
-.button:hover, .button:focus {
+.button:hover,
+.button:focus {
   border: 2px solid rgba(112, 76, 182, 0.4);
 }
 
@@ -51,11 +57,10 @@
 .asyncButton {
   composes: button;
   position: relative;
-  margin-left: 8px;
 }
 
 .asyncButton:after {
-  content: "";
+  content: '';
   background-color: rgba(112, 76, 182, 0.15);
   display: block;
   position: absolute;
@@ -70,5 +75,5 @@
 .asyncButton:active:after {
   width: 0%;
   opacity: 1;
-  transition: 0s
+  transition: 0s;
 }

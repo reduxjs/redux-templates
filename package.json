@@ -2,7 +2,7 @@
   "name": "cra-template-redux-typescript",
   "version": "1.0.1",
   "scripts": {
-    "prettify": "prettier --write './template/src/**/*.{ts,tsx}'",
+    "format": "prettier --write ./template/src/**/*.{ts,tsx,css}",
     "lint": "eslint './template/src/**/*.{ts,tsx}'",
     "test": "jest",
     "type-check": "tsc"
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
-    "@reduxjs/toolkit": "^1.2.5",
+    "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@types/jest": "^24.0.0",
@@ -55,7 +55,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "jest": "^24.9.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
