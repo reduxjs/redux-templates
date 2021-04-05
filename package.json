@@ -2,7 +2,7 @@
   "name": "cra-template-redux-typescript",
   "version": "1.0.1",
   "scripts": {
-    "prettify": "prettier --write './template/src/**/*.{ts,tsx}'",
+    "format": "prettier --write ./template/src/**/*.{ts,tsx,css}",
     "lint": "eslint './template/src/**/*.{ts,tsx}'",
     "test": "jest",
     "type-check": "tsc"
