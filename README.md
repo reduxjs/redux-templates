@@ -2,7 +2,7 @@
 
 The official Redux+TS template for [Create React App](https://github.com/facebook/create-react-app).
 
-To use this template, add `--template redux-typescript` when creating a new app.
+To use this template within your project, add `--template redux-typescript` when creating a new app.
 
 For example:
 
@@ -13,6 +13,8 @@ npx create-react-app my-app --template redux-typescript
 
 yarn create react-app my-app --template redux-typescript
 ```
+
+Cloning this repo pulls down the Redux template only; not a bundled and configured Create React App.
 
 For more information, please refer to:
 
