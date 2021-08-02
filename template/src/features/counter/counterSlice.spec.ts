@@ -3,6 +3,7 @@ import counterReducer, {
   increment,
   decrement,
   incrementByAmount,
+  incrementAsync,
 } from './counterSlice';
 
 describe('counter reducer', () => {
@@ -30,5 +31,31 @@ describe('counter reducer', () => {
   it('should handle incrementByAmount', () => {
     const actual = counterReducer(initialState, incrementByAmount(2));
     expect(actual.value).toEqual(5);
+  });
+});
+
+describe('counter reducer async actions', () => {
+  const initialState: CounterState = {
+    value: 5,
+    status: 'idle',
+  };
+  it('should set status to "loading"', async () => {
+    const action = { type: incrementAsync.pending.type };
+    const state = counterReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      status: 'loading',
+    });
+  });
+
+  it('should set status to "idle"', async () => {
+    const amount = 2;
+    const action = { type: incrementAsync.fulfilled.type, payload: amount };
+    const state = counterReducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      value: initialState.value + amount,
+      status: 'idle',
+    });
   });
 });
