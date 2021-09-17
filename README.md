@@ -1,5 +1,7 @@
 # cra-template-redux-typescript
 
+![build status](https://img.shields.io/github/workflow/status/reduxjs/cra-template-redux-typescript/Tests/master?style=flat-square)
+
 The official Redux+TS template for [Create React App](https://github.com/facebook/create-react-app).
 
 To use this template within your project, add `--template redux-typescript` when creating a new app.
