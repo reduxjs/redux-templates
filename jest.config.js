@@ -4,4 +4,5 @@ module.exports = {
       '<rootDir>/__mocks__/fileMock.ts',
   },
   setupFilesAfterEnv: ['<rootDir>/template/src/setupTests.ts'],
+  testEnvironment: 'jest-environment-jsdom-fourteen',
 };
