@@ -1,6 +1,6 @@
 {
   "name": "cra-template-redux-typescript",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "scripts": {
     "format": "prettier --write ./template/src/**/*.{ts,tsx,css}",
     "lint": "eslint './template/src/**/*.{ts,tsx}'",
