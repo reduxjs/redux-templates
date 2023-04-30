@@ -1,0 +1,61 @@
+{
+  "name": "cra-template-redux",
+  "version": "2.0.0",
+  "scripts": {
+    "format": "prettier --write ./template/src/**/*.js",
+    "lint": "cross-env NODE_ENV=development eslint ./template/src/**/*.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "react",
+    "create-react-app",
+    "template",
+    "redux",
+    "reduxjs",
+    "redux-toolkit",
+    "react-redux"
+  ],
+  "description": "The official Redux+JS template for Create React App.",
+  "main": "template.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reduxjs/cra-template-redux.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "bugs": {
+    "url": "https://github.com/reduxjs/cra-template-redux/issues"
+  },
+  "files": [
+    "template",
+    "template.json"
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.0.1",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^27.5.1",
+    "babel-preset-react-app": "^10.0.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.13.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-redux": "^8.0.0-rc.0",
+    "react-test-renderer": "^18.0.0",
+    "redux": "^4.1.2"
+  }
+}
