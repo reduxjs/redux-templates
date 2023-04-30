@@ -1,0 +1,15 @@
+{
+  "package": {
+    "dependencies": {
+      "@reduxjs/toolkit": "^1.8.1",
+      "@testing-library/jest-dom": "^5.16.4",
+      "@testing-library/react": "^13.0.1",
+      "@testing-library/user-event": "^14.1.1",
+      "react-redux": "^8.0.1",
+      "web-vitals": "^2.1.0"
+    },
+    "eslintConfig": {
+      "extends": ["react-app", "react-app/jest"]
+    }
+  }
+}
