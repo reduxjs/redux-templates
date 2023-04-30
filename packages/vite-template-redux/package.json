@@ -8,11 +8,16 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "type-check": "tsc"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^9.2.0",
@@ -36,7 +41,11 @@
       "react-app",
       "react-app/jest"
     ],
+    "plugins": [
+      "prettier"
+    ],
     "rules": {
+      "prettier/prettier": "error",
       "react/jsx-no-target-blank": "off"
     }
   },
