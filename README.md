@@ -6,5 +6,6 @@ For installation and setup instructions, see the README file in each project tem
 
 Currently, this repo contains these templates:
 
+- `vite-template-redux`: Vite, with TypeScript
 - `cra-template-redux-typescript`: Create-React-App, with TypeScript
 - `cra-template-redux`: Create-React-App, with JavaScript
