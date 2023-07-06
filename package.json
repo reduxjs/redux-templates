@@ -1,6 +1,13 @@
 {
   "name": "redux-templates",
   "packageManager": "yarn@3.6.1",
+  "devDependencies": {
+    "@babel/core": "^7.22.8",
+    "eslint": "^8.44.0",
+    "eslint-config-react-app": "^7.0.1",
+    "jest": "^27.5.1",
+    "prettier": "^2.8.8"
+  },
   "workspaces": [
     "packages/*"
   ]
