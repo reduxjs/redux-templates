@@ -1,2 +1,8 @@
 # Use LF line endings for template files
 **/template/** text=auto eol=lf
+
+# Yarn
+/.yarn/**            linguist-vendored
+/.yarn/releases/*    binary
+/.yarn/plugins/**/*  binary
+/.pnp.*              binary linguist-generated
