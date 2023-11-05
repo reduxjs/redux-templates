@@ -1,0 +1,27 @@
+# See https://prettier.io/docs/en/ignore
+# By default prettier ignores files in version control systems directories (".git", ".svn" and ".hg") 
+# ... and node_modules (if --with-node-modules CLI option not specified)
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+.yarn
+.pnp.*
+
+# Testing
+coverage
+
+# Production
+build
+
+# Miscellaneous
+.husky
+*.local
+
