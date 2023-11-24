@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "format": "prettier --write \"**/*.{json,ts,tsx,css,md}\"",
-    "lint": "eslint --cache --fix --ext .json,.ts,.tsx  .",
+    "lint": "eslint --cache --fix --ext .json,.ts,.tsx  src",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
+    "@types/jest": "^29.5.10",
     "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.17",
     "@types/testing-library__jest-dom": "^6.0.0",
@@ -42,7 +43,7 @@
     "vitest": "^0.34.6"
   },
   "lint-staged": {
-    "*.{json,ts,tsx}": "eslint --cache --fix",
+    "src/*.{json,ts,tsx}": "eslint --cache --fix",
     "*.{json,ts,tsx,css,md}": "prettier --write"
   }
 }
