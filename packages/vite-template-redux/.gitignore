@@ -20,6 +20,9 @@ node_modules
 !.yarn/cache
 #.pnp.*
 
+# Linting
+.eslintcache
+
 # Testing
 coverage
 
