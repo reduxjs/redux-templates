@@ -1,27 +1,28 @@
-import type { Action, ThunkAction } from "@reduxjs/toolkit"
-import { configureStore } from "@reduxjs/toolkit"
-import { setupListeners } from "@reduxjs/toolkit/query"
-import { counterSlice } from "../features/counter/counterSlice"
-import { quotesApi } from "../features/quotes/quotesAPI"
+import type { Action, ThunkAction } from '@reduxjs/toolkit'
+import { combineSlices, configureStore } from '@reduxjs/toolkit'
+import { counterSlice } from '../features/counter/counterSlice'
+import { quotesApiSlice } from '../features/quotes/quotesApiSlice'
 
-export const store = configureStore({
-  reducer: {
-    [counterSlice.reducerPath]: counterSlice.reducer,
-    [quotesApi.reducerPath]: quotesApi.reducer,
-  },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of `rtk-query`.
-  middleware: getDefaultMiddleware => {
-    return getDefaultMiddleware().concat(quotesApi.middleware)
-  },
-})
+// `combineSlices` automatically combines the reducers using
+// their `reducerPath`s, therefore we no longer need to call `combineReducers`.
+const rootReducer = combineSlices(counterSlice, quotesApiSlice)
 
-// configure listeners using the provided defaults
-// optional, but required for `refetchOnFocus`/`refetchOnReconnect` behaviors
-setupListeners(store.dispatch)
+export const makeStore = () => {
+  return configureStore({
+    reducer: rootReducer,
+    // Adding the api middleware enables caching, invalidation, polling,
+    // and other useful features of `rtk-query`.
+    middleware: getDefaultMiddleware => {
+      return getDefaultMiddleware().concat(quotesApiSlice.middleware)
+    },
+  })
+}
 
-export type AppDispatch = typeof store.dispatch
-export type RootState = ReturnType<typeof store.getState>
+// Infer the return type of `makeStore`
+export type AppStore = ReturnType<typeof makeStore>
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<AppStore['getState']>
+export type AppDispatch = AppStore['dispatch']
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
