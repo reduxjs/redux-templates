@@ -1,15 +1,14 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import styles from "./Counter.module.css";
 import { decrement, increment, incrementAsync, incrementByAmount, incrementIfOdd, selectCount, selectStatus, } from "./counterSlice";
 
 export const Counter = () => {
-    const dispatch = useAppDispatch();
-    const count = useAppSelector(selectCount);
-    const status = useAppSelector(selectStatus);
+    const dispatch = useDispatch();
+    const count = useSelector(selectCount);
+    const status = useSelector(selectStatus);
     const [incrementAmount, setIncrementAmount] = useState(2);
-    
+
     return (<div>
       <div className={styles.row}>
         <button className={styles.button} aria-label="Decrement value" onClick={() => dispatch(decrement())}>
