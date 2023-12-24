@@ -1,5 +1,5 @@
 import {
-  CounterState,
+  CounterSliceState,
   counterSlice,
   decrement,
   increment,
@@ -7,7 +7,7 @@ import {
 } from "./counterSlice"
 
 describe("counter reducer", () => {
-  const initialState: CounterState = {
+  const initialState: CounterSliceState = {
     value: 3,
     status: "idle",
   }

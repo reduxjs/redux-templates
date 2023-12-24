@@ -9,11 +9,13 @@ import {
   incrementByAmount,
   incrementIfOdd,
   selectCount,
+  selectStatus,
 } from "./counterSlice"
 
 export const Counter = () => {
-  const count = useAppSelector(selectCount)
   const dispatch = useAppDispatch()
+  const count = useAppSelector(selectCount)
+  const status = useAppSelector(selectStatus)
   const [incrementAmount, setIncrementAmount] = useState(2)
 
   return (
@@ -50,6 +52,7 @@ export const Counter = () => {
         </button>
         <button
           className={styles.asyncButton}
+          disabled={status !== "idle"}
           onClick={() => dispatch(incrementAsync(incrementAmount))}
         >
           Add Async

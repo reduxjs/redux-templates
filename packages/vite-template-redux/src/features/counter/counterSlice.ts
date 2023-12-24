@@ -3,12 +3,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import type { AppThunk } from "../../app/store"
 import { fetchCount } from "./counterAPI"
 
-export interface CounterState {
+export interface CounterSliceState {
   value: number
   status: "idle" | "loading" | "failed"
 }
 
-const initialState: CounterState = {
+const initialState: CounterSliceState = {
   value: 0,
   status: "idle",
 }
@@ -22,6 +22,7 @@ export const incrementAsync = createAsyncThunk(
   "counter/fetchCount",
   async (amount: number) => {
     const response = await fetchCount(amount)
+
     // The value we return becomes the `fulfilled` action payload
     return response.data
   },
@@ -63,15 +64,18 @@ export const counterSlice = createSlice({
       })
   },
   // You can define your selectors here. These selectors receive the slice
-  // state as their first parameter.
+  // state as their first argument.
   selectors: {
     selectCount: counter => counter.value,
+    selectStatus: counter => counter.status,
   },
 })
 
-export const { selectCount } = counterSlice.selectors
-
+// Action creators are generated for each case reducer function.
 export const { decrement, increment, incrementByAmount } = counterSlice.actions
+
+// Selectors returned by `slice.selectors` take the root state as their first argument.
+export const { selectCount, selectStatus } = counterSlice.selectors
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
