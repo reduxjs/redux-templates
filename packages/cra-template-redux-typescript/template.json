@@ -14,8 +14,10 @@
       "typescript": "^5.3.3",
       "web-vitals": "^3.5.0"
     },
-    "eslintConfig": {
-      "extends": ["react-app", "react-app/jest"]
+    "scripts": {
+      "format": "prettier --write .",
+      "lint": "eslint .",
+      "type-check": "tsc"
     }
   }
 }
