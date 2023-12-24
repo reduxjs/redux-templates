@@ -1,6 +1,7 @@
 {
   "package": {
     "dependencies": {
+      "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
       "@reduxjs/toolkit": "^2.0.1",
       "@testing-library/jest-dom": "^6.1.5",
       "@testing-library/react": "^14.1.2",
