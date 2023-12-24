@@ -1,5 +1,6 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { configureStore } from "@reduxjs/toolkit"
+import { setupListeners } from "@reduxjs/toolkit/query"
 import { counterSlice } from "../features/counter/counterSlice"
 import { quotesApi } from "../features/quotes/quotesAPI"
 
@@ -14,6 +15,10 @@ export const store = configureStore({
     return getDefaultMiddleware().concat(quotesApi.middleware)
   },
 })
+
+// configure listeners using the provided defaults
+// optional, but required for `refetchOnFocus`/`refetchOnReconnect` behaviors
+setupListeners(store.dispatch)
 
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
