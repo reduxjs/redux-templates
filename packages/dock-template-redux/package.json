@@ -4,6 +4,7 @@
   "description": "Single page web application template featuring Typescript, React, Redux, Eslint, Prettier, Parcel, Docker",
   "main": "index.js",
   "scripts": {
+    "build": "parcel build",
     "test": "jest"
   },
   "keywords": [
