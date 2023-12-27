@@ -38,6 +38,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^29.7.0",
     "babel-preset-react-app": "^10.0.1",
