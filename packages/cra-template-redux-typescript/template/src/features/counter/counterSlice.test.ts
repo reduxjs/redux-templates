@@ -1,6 +1,6 @@
 import { makeStore } from "../../app/store"
+import type { CounterSliceState } from "./counterSlice"
 import {
-  CounterSliceState,
   counterSlice,
   decrement,
   increment,
