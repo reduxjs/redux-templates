@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { createSliceWithThunks } from "../../app/createSliceWithThunks"
-import { AppThunk } from "../../app/store"
+import type { AppThunk } from "../../app/store"
 import { fetchCount } from "./counterAPI"
 
 export interface CounterSliceState {
