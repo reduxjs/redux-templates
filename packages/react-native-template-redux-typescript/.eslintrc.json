@@ -1,0 +1,24 @@
+{
+  "extends": ["plugin:react/jsx-runtime"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true,
+    "tsconfigRootDir": "./"
+  },
+  "plugins": ["@typescript-eslint"],
+  "root": true,
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": [
+      2,
+      {
+        "fixStyle": "separate-type-imports"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["./src/**/*test.ts", "./src/**/*test.tsx"],
+      "env": { "jest": true }
+    }
+  ]
+}
