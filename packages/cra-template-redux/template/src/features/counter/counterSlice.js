@@ -49,7 +49,7 @@ export const counterSlice = createSliceWithThunks({
         rejected: state => {
           state.status = "failed"
         },
-      }
+      },
     ),
   }),
   // You can define your selectors here. These selectors receive the slice
