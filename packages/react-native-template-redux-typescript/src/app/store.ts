@@ -22,7 +22,7 @@ export const makeStore = (preloadedState?: Partial<RootState>) => {
   })
   // configure listeners using the provided defaults
   // optional, but required for `refetchOnFocus`/`refetchOnReconnect` behaviors
-  // setupListeners(store.dispatch)
+  setupListeners(store.dispatch)
   return store
 }
 
