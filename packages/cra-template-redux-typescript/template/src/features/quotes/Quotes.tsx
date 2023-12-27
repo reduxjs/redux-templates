@@ -1,5 +1,5 @@
 import { useState } from "react"
-import styles from "./quotes.module.css"
+import styles from "./Quotes.module.css"
 import { useGetQuotesQuery } from "./quotesApiSlice"
 
 export const Quotes = () => {
