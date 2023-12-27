@@ -1,0 +1,20 @@
+{
+  "name": "dock-template-redux",
+  "version": "1.0.0",
+  "description": "Single page web application template featuring Typescript, React, Redux, Eslint, Prettier, Parcel, Docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "TypeScript",
+    "React",
+    "Redux",
+    "ESLint",
+    "Prettier",
+    "Parcel",
+    "Docker"
+  ],
+  "author": "hidarikani",
+  "license": "ISC"
+}
