@@ -10,4 +10,5 @@ nvm use # will use .nvmrc
 
 ```shell
 npm install
+npm run build 
 ```
