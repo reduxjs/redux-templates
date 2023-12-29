@@ -30,9 +30,7 @@ export const Counter = () => {
         >
           -
         </button>
-        <span data-testid="count" className={styles.value}>
-          {count}
-        </span>
+        <span className={styles.value}>{count}</span>
         <button
           className={styles.button}
           aria-label="Increment value"
@@ -47,7 +45,9 @@ export const Counter = () => {
           aria-label="Set increment amount"
           value={incrementAmount}
           type="number"
-          onChange={e => setIncrementAmount(e.target.value)}
+          onChange={e => {
+            setIncrementAmount(e.target.value)
+          }}
         />
         <button
           className={styles.button}
@@ -64,7 +64,9 @@ export const Counter = () => {
         </button>
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
+          onClick={() => {
+            dispatch(incrementIfOdd(incrementValue))
+          }}
         >
           Add If Odd
         </button>
