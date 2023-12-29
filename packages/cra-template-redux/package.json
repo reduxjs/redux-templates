@@ -36,7 +36,7 @@
     "@babel/preset-env": "^7.23.6",
     "@babel/preset-react": "^7.23.3",
     "@reduxjs/toolkit": "^2.0.1",
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "babel-eslint": "^10.1.0",
@@ -56,6 +56,6 @@
     "react-redux": "^9.0.4",
     "react-scripts": "^5.0.1",
     "react-test-renderer": "^18.2.0",
-    "web-vitals": "^3.5.0"
+    "web-vitals": "^3.5.1"
   }
 }
