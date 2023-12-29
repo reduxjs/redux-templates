@@ -37,6 +37,11 @@ const links: Link[] = [
     link: "https://react-redux.js.org",
     description: "Official React bindings for Redux",
   },
+  {
+    title: "Reselect",
+    link: "https://reselect.js.org",
+    description: "A memoized selector library for Redux",
+  },
 ]
 
 export const LearnReduxLinks = () => {
