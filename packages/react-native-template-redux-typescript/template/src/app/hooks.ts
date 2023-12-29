@@ -8,6 +8,12 @@ import type { AppDispatch, RootState } from "./store"
 export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
+/**
+ * Custom React hook for calculating viewport units
+ * based on the current window dimensions.
+ *
+ * @returns An object containing the calculated viewport heigh and width values.
+ */
 export const useViewportUnits = () => {
   const { width, height } = useWindowDimensions()
 
@@ -17,6 +23,12 @@ export const useViewportUnits = () => {
   return { vh, vw }
 }
 
+/**
+ * Custom React hook for creating a bounce animation effect.
+ *
+ * @param value - The maximum height to which the object should bounce. Defaults to 10 if not provided.
+ * @returns The `Animated.Value` object that can be used to drive animations.
+ */
 export const useBounceAnimation = (value = 10) => {
   const bounce = useRef(new Animated.Value(0)).current
 

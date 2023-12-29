@@ -18,17 +18,17 @@ interface Link {
 const links: Link[] = [
   {
     title: "React",
-    link: "https://reactjs.org/",
+    link: "https://reactjs.org",
     description: "JavaScript library for building user interfaces",
   },
   {
     title: "Redux",
-    link: "https://redux.js.org/",
+    link: "https://redux.js.org",
     description: "A Predictable State Container for JS Apps",
   },
   {
     title: "Redux Toolkit",
-    link: "https://redux-toolkit.js.org/",
+    link: "https://redux-toolkit.js.org",
     description:
       "The official, opinionated, batteries-included toolset for efficient Redux development",
   },
