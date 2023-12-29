@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import {
   SafeAreaView,
   ScrollView,
@@ -22,7 +21,7 @@ import { Section } from "./src/components/Section"
 import { TypedColors } from "./src/constants/TypedColors"
 import { Quotes } from "./src/features/quotes/Quotes"
 
-export const App: FC = () => {
+export const App = () => {
   const isDarkMode = useColorScheme() === "dark"
 
   const backgroundStyle = {

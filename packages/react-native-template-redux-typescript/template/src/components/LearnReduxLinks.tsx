@@ -1,5 +1,4 @@
-import type { FC } from "react"
-import React from "react"
+import { Fragment } from "react"
 import {
   StyleSheet,
   Text,
@@ -40,14 +39,14 @@ const links: Link[] = [
   },
 ]
 
-export const LearnReduxLinks: FC = () => {
+export const LearnReduxLinks = () => {
   const isDarkMode = useColorScheme() === "dark"
 
   return (
     <View style={styles.container}>
       {links.map((item, index) => {
         return (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <View
               style={[
                 styles.separator,
@@ -75,7 +74,7 @@ export const LearnReduxLinks: FC = () => {
                 {item.description}
               </Text>
             </TouchableOpacity>
-          </React.Fragment>
+          </Fragment>
         )
       })}
     </View>

@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren } from "react"
+import type { PropsWithChildren } from "react"
 import { useRef } from "react"
 import type {
   GestureResponderEvent,
@@ -9,12 +9,12 @@ import { Animated, Pressable, StyleSheet, View } from "react-native"
 
 type AsyncButtonProps = PressableProps & PropsWithChildren
 
-export const AsyncButton: FC<AsyncButtonProps> = ({
+export const AsyncButton = ({
   onPress,
   style,
   children,
   ...restProps
-}) => {
+}: AsyncButtonProps) => {
   const progress = useRef(new Animated.Value(0)).current
   const opacity = useRef(new Animated.Value(1)).current
 
