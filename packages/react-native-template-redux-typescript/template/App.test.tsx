@@ -52,9 +52,9 @@ it("Add Async should work as expected", async () => {
   // "Add Async" button is clicked => Count should be 2
   await user.press(screen.getByText("Add Async"))
 
-  await waitFor(() =>
-    expect(screen.getByTestId("count")).toHaveTextContent("2"),
-  )
+  await waitFor(() => {
+    expect(screen.getByTestId("count")).toHaveTextContent("2")
+  })
 
   const incrementValueInput = screen.getByLabelText("Set increment amount")
   // incrementValue is 2, click on "Add Async" => Count should be 4
@@ -62,17 +62,17 @@ it("Add Async should work as expected", async () => {
   await user.type(incrementValueInput, "2")
 
   await user.press(screen.getByText("Add Async"))
-  await waitFor(() =>
-    expect(screen.getByTestId("count")).toHaveTextContent("4"),
-  )
+  await waitFor(() => {
+    expect(screen.getByTestId("count")).toHaveTextContent("4")
+  })
 
   // [Negative number] incrementValue is -1, click on "Add Async" => Count should be 3
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
   await user.press(screen.getByText("Add Async"))
-  await waitFor(() =>
-    expect(screen.getByTestId("count")).toHaveTextContent("3"),
-  )
+  await waitFor(() => {
+    expect(screen.getByTestId("count")).toHaveTextContent("3")
+  })
 })
 
 test("Add If Odd should work as expected", async () => {

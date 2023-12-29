@@ -35,7 +35,9 @@ export const Quotes = () => {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => setModalVisible(true)}
+          onPress={() => {
+            setModalVisible(true)
+          }}
           style={styles.button}
         >
           <Text style={styles.buttonText}>
@@ -47,7 +49,9 @@ export const Quotes = () => {
           animationType="slide"
           transparent={true}
           visible={modalVisible}
-          onRequestClose={() => setModalVisible(false)}
+          onRequestClose={() => {
+            setModalVisible(false)
+          }}
         >
           <View style={styles.modalView}>
             <ScrollView style={styles.quotesList}>
@@ -55,7 +59,9 @@ export const Quotes = () => {
                 <TouchableOpacity
                   key={option}
                   style={styles.option}
-                  onPress={() => pickNumberOfQuotes(option)}
+                  onPress={() => {
+                    pickNumberOfQuotes(option)
+                  }}
                 >
                   <Text style={styles.optionText}>{option}</Text>
                 </TouchableOpacity>
