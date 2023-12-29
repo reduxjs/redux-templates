@@ -6,12 +6,22 @@ import {
   Text,
   TouchableOpacity,
   View,
+  useColorScheme,
 } from "react-native"
+import { TypedColors } from "../../constants/TypedColors"
 import { useGetQuotesQuery } from "./quotesApiSlice"
 
 const options = [5, 10, 20, 30]
 
 export const Quotes = () => {
+  const isDarkMode = useColorScheme() === "dark"
+  const textStyle = {
+    color: isDarkMode ? TypedColors.light : TypedColors.dark,
+  }
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? TypedColors.darker : TypedColors.lighter,
+  }
+
   const [numberOfQuotes, setNumberOfQuotes] = useState(10)
   const [modalVisible, setModalVisible] = useState(false)
   // Using a query hook automatically fetches data and returns query values
@@ -49,11 +59,12 @@ export const Quotes = () => {
           animationType="slide"
           transparent={true}
           visible={modalVisible}
+          style={backgroundStyle}
           onRequestClose={() => {
             setModalVisible(false)
           }}
         >
-          <View style={styles.modalView}>
+          <View style={[styles.modalView, backgroundStyle]}>
             <ScrollView style={styles.quotesList}>
               {options.map(option => (
                 <TouchableOpacity
@@ -63,7 +74,7 @@ export const Quotes = () => {
                     pickNumberOfQuotes(option)
                   }}
                 >
-                  <Text style={styles.optionText}>{option}</Text>
+                  <Text style={[styles.optionText, textStyle]}>{option}</Text>
                 </TouchableOpacity>
               ))}
             </ScrollView>
@@ -73,9 +84,11 @@ export const Quotes = () => {
         {
           <ScrollView>
             {data.quotes.map(({ author, quote, id }) => (
-              <View key={id} style={styles.quoteContainer}>
-                <Text style={styles.quoteText}>{`"${quote}"`}</Text>
-                <Text style={styles.author}>- {author}</Text>
+              <View key={id} style={[styles.quoteContainer, backgroundStyle]}>
+                <Text
+                  style={[styles.quoteText, textStyle]}
+                >{`"${quote}"`}</Text>
+                <Text style={[styles.author, textStyle]}>- {author}</Text>
               </View>
             ))}
           </ScrollView>
@@ -107,7 +120,6 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
     borderRadius: 5,
     padding: 20,
     alignItems: "center",
@@ -126,7 +138,6 @@ const styles = StyleSheet.create({
     width: "auto",
   },
   quoteContainer: {
-    backgroundColor: "#f0f0f0",
     padding: 10,
     borderRadius: 5,
     marginVertical: 5,

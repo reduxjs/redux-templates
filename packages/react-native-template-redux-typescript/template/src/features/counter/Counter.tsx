@@ -5,9 +5,11 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  useColorScheme,
 } from "react-native"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { AsyncButton } from "../../components/AsyncButton"
+import { TypedColors } from "../../constants/TypedColors"
 import {
   decrement,
   increment,
@@ -19,6 +21,11 @@ import {
 } from "./counterSlice"
 
 export const Counter = () => {
+  const isDarkMode = useColorScheme() === "dark"
+  const textStyle = {
+    color: isDarkMode ? TypedColors.light : TypedColors.dark,
+  }
+
   const dispatch = useAppDispatch()
   const count = useAppSelector(selectCount)
   const status = useAppSelector(selectStatus)
@@ -36,7 +43,7 @@ export const Counter = () => {
         >
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
-        <Text testID="count" style={styles.value}>
+        <Text testID="count" style={[styles.value, textStyle]}>
           {count}
         </Text>
         <TouchableOpacity
@@ -50,12 +57,10 @@ export const Counter = () => {
       <View style={styles.row}>
         <TextInput
           aria-label="Set increment amount"
-          style={styles.textbox}
+          style={[styles.textbox, textStyle]}
           value={`${incrementAmount}`}
           keyboardType="numeric"
-          onChangeText={text => {
-            setIncrementAmount(text)
-          }}
+          onChangeText={setIncrementAmount}
         />
         <View>
           <TouchableOpacity
