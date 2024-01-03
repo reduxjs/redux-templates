@@ -1,4 +1,4 @@
-import { createSliceWithThunks } from "../../app/createSliceWithThunks"
+import { createSliceWithThunks } from "../../app/createAppSlice"
 import { fetchCount } from "./counterAPI"
 
 const initialState = {
