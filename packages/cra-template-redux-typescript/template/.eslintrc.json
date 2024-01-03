@@ -1,3 +1,17 @@
 {
-  "extends": ["react-app", "react-app/jest"]
+  "extends": ["react-app", "react-app/jest"],
+  "rules": {
+    "@typescript-eslint/no-restricted-imports": [
+      2,
+      {
+        "paths": [
+          {
+            "name": "react-redux",
+            "importNames": ["useSelector", "useStore", "useDispatch"],
+            "message": "Please use pre-typed versions from `src/app/hooks.ts` instead."
+          }
+        ]
+      }
+    ]
+  }
 }
