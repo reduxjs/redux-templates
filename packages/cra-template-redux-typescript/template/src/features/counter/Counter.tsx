@@ -30,7 +30,9 @@ export const Counter = () => {
         >
           -
         </button>
-        <span className={styles.value}>{count}</span>
+        <span aria-label="Count" className={styles.value}>
+          {count}
+        </span>
         <button
           className={styles.button}
           aria-label="Increment value"
