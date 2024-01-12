@@ -1,4 +1,4 @@
-import { createSliceWithThunks } from "../../app/createAppSlice"
+import { createAppSlice } from "../../app/createAppSlice"
 import { fetchCount } from "./counterAPI"
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
 }
 
 // If you are not using async thunks you can use the standalone `createSlice`.
-export const counterSlice = createSliceWithThunks({
+export const counterSlice = createAppSlice({
   name: "counter",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
