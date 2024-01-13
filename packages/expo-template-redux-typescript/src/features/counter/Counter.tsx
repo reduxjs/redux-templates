@@ -43,7 +43,7 @@ export const Counter = () => {
         >
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
-        <Text testID="count" style={[styles.value, textStyle]}>
+        <Text aria-label="Count" style={[styles.value, textStyle]}>
           {count}
         </Text>
         <TouchableOpacity
