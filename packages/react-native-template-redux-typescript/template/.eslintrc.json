@@ -1,5 +1,10 @@
 {
-  "extends": ["plugin:react/jsx-runtime"],
+  "extends": [
+    "eslint:recommended",
+    "@react-native",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": { "project": true, "tsconfigRootDir": "./" },
   "plugins": ["@typescript-eslint"],
@@ -7,9 +12,7 @@
   "rules": {
     "@typescript-eslint/consistent-type-imports": [
       2,
-      {
-        "fixStyle": "separate-type-imports"
-      }
+      { "fixStyle": "separate-type-imports" }
     ],
     "@typescript-eslint/no-restricted-imports": [
       2,
@@ -25,10 +28,7 @@
     ]
   },
   "overrides": [
-    { "files": ["./**/*.ts", "./**/*.tsx"] },
-    {
-      "files": ["./src/**/*test.ts", "./src/**/*test.tsx"],
-      "env": { "jest": true }
-    }
+    { "files": ["*.{c,m,}{t,j}s", "*.{t,j}sx"] },
+    { "files": ["*{test,spec}.{t,j}s?(x)"], "env": { "jest": true } }
   ]
 }
