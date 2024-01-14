@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write \"./**/*.{js,ts,jsx,tsx,mjs,cts,md}\"",
+    "format": "prettier --write .",
     "test": "jest",
     "type-check": "tsc --noEmit"
   },
