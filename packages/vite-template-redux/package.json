@@ -11,7 +11,8 @@
     "test": "vitest run",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "type-check": "tsc"
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
