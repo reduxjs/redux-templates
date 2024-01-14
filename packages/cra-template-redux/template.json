@@ -12,7 +12,8 @@
     },
     "scripts": {
       "format": "prettier --write .",
-      "lint": "eslint ."
+      "lint": "eslint .",
+      "lint:fix": "eslint --fix ."
     }
   }
 }
