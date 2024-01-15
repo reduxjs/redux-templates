@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
+  "root": true,
+  "ignorePatterns": ["build"],
+  "overrides": [
+    { "files": ["*.{c,m,}js", "*.jsx"] },
+    { "files": ["*{test,spec}.js?(x)"], "env": { "jest": true } }
+  ]
+}

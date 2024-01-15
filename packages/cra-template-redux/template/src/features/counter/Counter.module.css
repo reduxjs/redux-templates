@@ -8,6 +8,7 @@
   margin-left: 4px;
   margin-right: 8px;
 }
+
 .row:not(:last-child) {
   margin-bottom: 16px;
 }
@@ -17,7 +18,7 @@
   padding-left: 16px;
   padding-right: 16px;
   margin-top: 2px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .button {
@@ -59,7 +60,7 @@
 }
 
 .asyncButton:after {
-  content: '';
+  content: "";
   background-color: rgba(112, 76, 182, 0.15);
   display: block;
   position: absolute;
@@ -68,7 +69,9 @@
   left: 0;
   top: 0;
   opacity: 0;
-  transition: width 1s linear, opacity 0.5s ease 1s;
+  transition:
+    width 1s linear,
+    opacity 0.5s ease 1s;
 }
 
 .asyncButton:active:after {
