@@ -7,6 +7,8 @@ import { quotesApiSlice } from "../features/quotes/quotesApiSlice"
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
 const rootReducer = combineSlices(counterSlice, quotesApiSlice)
 
+// The store setup is wrapped in `makeStore` to allow reuse
+// when setting up tests that need the same store config
 export const makeStore = preloadedState => {
   const store = configureStore({
     reducer: rootReducer,
