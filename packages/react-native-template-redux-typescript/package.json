@@ -1,0 +1,23 @@
+{
+  "name": "react-native-template-redux-typescript",
+  "version": "0.0.1",
+  "private": true,
+  "description": "The official Redux+TS template for React Native",
+  "files": [
+    "template",
+    "template.config.js"
+  ],
+  "scripts": {
+    "format": "prettier --write \"./**/*.{js,ts,jsx,tsx,mjs,cts,md}\"",
+    "lint": "eslint './template/src/**/*.{ts,tsx,js,jsx}'",
+    "test": "jest",
+    "type-check": "tsc"
+  },
+  "keywords": [
+    "react-native",
+    "typescript",
+    "jest",
+    "template",
+    "boilerplate"
+  ]
+}
