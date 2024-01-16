@@ -1,6 +1,7 @@
 {
   "name": "expo-template-redux-typescript",
   "version": "1.0.0",
+  "description": "The official Redux+TS template for Expo",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -12,6 +13,10 @@
     "format": "prettier --write .",
     "test": "jest",
     "type-check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reduxjs/redux-templates.git"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
@@ -39,6 +44,5 @@
     "prettier": "^3.2.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
-  },
-  "private": true
+  }
 }
