@@ -1,6 +1,5 @@
 {
   "name": "redux-templates",
-  "packageManager": "yarn@4.1.0",
   "private": true,
   "license": "MIT",
   "repository": {
@@ -13,5 +12,19 @@
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {}
+  "scripts": {
+    "format": "prettier --write . --cache --cache-strategy content",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --cache --cache-strategy content",
+    "lint:fix": "eslint . --fix",
+    "build": "yarn workspaces foreach -A run build",
+    "test": "yarn workspaces foreach -A run test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "yarn@4.5.3"
 }
