@@ -1,0 +1,17 @@
+{
+  "name": "redux-templates",
+  "packageManager": "yarn@4.1.0",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reduxjs/redux-templates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reduxjs/redux-templates/issues"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {}
+}
