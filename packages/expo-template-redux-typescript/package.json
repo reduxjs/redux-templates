@@ -5,6 +5,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
+    "build": "expo prebuild --clean -p android && cd android && chmod +x ./gradlew && sh ./gradlew bundleRelease --no-daemon && cd .. && react-native build-android",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
