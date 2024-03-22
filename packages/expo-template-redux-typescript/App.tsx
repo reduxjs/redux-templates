@@ -1,7 +1,7 @@
-import { Provider } from "react-redux"
-import { store } from "./src/app/store"
+import { Provider } from 'react-redux'
+import { store } from './src/app/store'
 
-import { Main } from "./src/Main"
+import { Main } from './src/Main'
 
 export const App = () => {
   return (

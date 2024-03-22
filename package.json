@@ -1,0 +1,36 @@
+{
+  "name": "redux-templates",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reduxjs/redux-templates"
+  },
+  "bugs": {
+    "url": "https://github.com/reduxjs/redux-templates/issues"
+  },
+  "workspaces": [
+    "packages/*",
+    "cra-js-app"
+  ],
+  "scripts": {
+    "format": "prettier --write . --cache --cache-strategy content",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --cache --cache-strategy content",
+    "lint:fix": "eslint . --fix",
+    "build": "yarn workspaces foreach -A run build",
+    "test": "yarn workspaces foreach -A run test"
+  },
+  "devDependencies": {
+    "@reduxjs/toolkit": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "prettier": "latest",
+    "react-redux": "latest",
+    "tsx": "^4.7.1"
+  },
+  "packageManager": "yarn@4.1.1"
+}

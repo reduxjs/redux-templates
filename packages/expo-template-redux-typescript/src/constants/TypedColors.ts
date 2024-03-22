@@ -1,4 +1,4 @@
-import { Colors } from "react-native/Libraries/NewAppScreen"
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 interface AllColors {
   primary: string

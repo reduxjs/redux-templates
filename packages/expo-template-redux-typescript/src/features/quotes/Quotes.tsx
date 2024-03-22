@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 import {
   Modal,
   ScrollView,
@@ -7,14 +7,14 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
-} from "react-native"
-import { TypedColors } from "../../constants/TypedColors"
-import { useGetQuotesQuery } from "./quotesApiSlice"
+} from 'react-native'
+import { TypedColors } from '../../constants/TypedColors'
+import { useGetQuotesQuery } from './quotesApiSlice'
 
 const options = [5, 10, 20, 30]
 
 export const Quotes = () => {
-  const isDarkMode = useColorScheme() === "dark"
+  const isDarkMode = useColorScheme() === 'dark'
   const textStyle = {
     color: isDarkMode ? TypedColors.light : TypedColors.dark,
   }
@@ -66,7 +66,7 @@ export const Quotes = () => {
         >
           <View style={[styles.modalView, backgroundStyle]}>
             <ScrollView style={styles.quotesList}>
-              {options.map(option => (
+              {options.map((option) => (
                 <TouchableOpacity
                   key={option}
                   style={styles.option}
@@ -103,39 +103,39 @@ export const Quotes = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 20,
   },
   button: {
     padding: 10,
-    backgroundColor: "rgba(112, 76, 182, 0.1)",
+    backgroundColor: 'rgba(112, 76, 182, 0.1)',
     borderRadius: 5,
   },
   buttonText: {
-    color: "rgb(112, 76, 182)",
+    color: 'rgb(112, 76, 182)',
     fontSize: 18,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 5,
   },
   modalView: {
     margin: 20,
     borderRadius: 5,
     padding: 20,
-    alignItems: "center",
+    alignItems: 'center',
     elevation: 5,
   },
   option: {
     fontSize: 30,
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#CCC",
+    borderBottomColor: '#CCC',
   },
   optionText: {
     fontSize: 20,
   },
   quotesList: {
-    width: "auto",
+    width: 'auto',
   },
   quoteContainer: {
     padding: 10,
@@ -143,11 +143,11 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   quoteText: {
-    fontStyle: "italic",
+    fontStyle: 'italic',
   },
   author: {
-    fontWeight: "bold",
-    textAlign: "right",
+    fontWeight: 'bold',
+    textAlign: 'right',
     marginTop: 5,
   },
 })

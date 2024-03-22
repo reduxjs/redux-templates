@@ -1,10 +1,10 @@
-import type { ConfigFunction } from "@babel/core"
+import type { ConfigFunction } from '@babel/core'
 
-const config: ConfigFunction = api => {
+const config: ConfigFunction = (api) => {
   api.cache.forever()
 
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
   }
 }
 

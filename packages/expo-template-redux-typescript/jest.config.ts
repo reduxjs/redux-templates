@@ -1,9 +1,9 @@
-import type { Config } from "jest"
+import type { Config } from 'jest'
 
 const config: Config = {
-  preset: "jest-expo",
-  testEnvironment: "node",
-  setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
+  preset: 'jest-expo',
+  testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   fakeTimers: { enableGlobally: true },
 }
 

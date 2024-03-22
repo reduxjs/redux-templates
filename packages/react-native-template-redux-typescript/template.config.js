@@ -12,6 +12,6 @@
  * @type TemplateConfig
  */
 module.exports = {
-  placeholderName: "RNTemplate",
-  templateDir: "./template",
-};
+  placeholderName: 'RNTemplate',
+  templateDir: './template',
+}
