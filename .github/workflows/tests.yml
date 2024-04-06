@@ -36,7 +36,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          cache: 'yarn'
 
       - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         run: npx tsx scripts/mockTemplates.mts ${{ matrix.packages }}
