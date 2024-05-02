@@ -30,7 +30,7 @@
     "eslint-plugin-prettier": "latest",
     "prettier": "latest",
     "react-redux": "latest",
-    "tsx": "^4.7.2"
+    "tsx": "^4.8.2"
   },
   "packageManager": "yarn@4.1.1"
 }
