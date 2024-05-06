@@ -17195,7 +17195,7 @@ __metadata:
     eslint-plugin-prettier: "npm:latest"
     prettier: "npm:latest"
     react-redux: "npm:latest"
-    tsx: "npm:^4.8.2"
+    tsx: "npm:^4.9.3"
   languageName: unknown
   linkType: soft
 
@@ -19383,9 +19383,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.8.2":
-  version: 4.8.2
-  resolution: "tsx@npm:4.8.2"
+"tsx@npm:^4.9.3":
+  version: 4.9.3
+  resolution: "tsx@npm:4.9.3"
   dependencies:
     esbuild: "npm:~0.20.2"
     fsevents: "npm:~2.3.3"
@@ -19395,7 +19395,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/77f10c8c7a05dd3cdf159bd58f5c4a20074f62e45b5b0fac8becf79f47909693db26ceab12fd4249caae208c9109a75c75c2aff7ba61413a2080c7e0434f97d1
+  checksum: 10/17ed7b748d9f213e0b3795f99ef14edf26f814eb498d4a7be95a253648f39f376009e97d4202fdb3f8a03f3b0e1b3fe6e64b70be83d58beadf1a6158612a163b
   languageName: node
   linkType: hard
 
