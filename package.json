@@ -10,8 +10,7 @@
     "url": "https://github.com/reduxjs/redux-templates/issues"
   },
   "workspaces": [
-    "packages/*",
-    "cra-js-app"
+    "packages/*"
   ],
   "scripts": {
     "format": "prettier --write . --cache --cache-strategy content",
