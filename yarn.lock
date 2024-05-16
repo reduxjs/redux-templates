@@ -10591,12 +10591,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-tsconfig@npm:^4.7.3":
-  version: 4.7.3
-  resolution: "get-tsconfig@npm:4.7.3"
+"get-tsconfig@npm:^4.7.5":
+  version: 4.7.5
+  resolution: "get-tsconfig@npm:4.7.5"
   dependencies:
     resolve-pkg-maps: "npm:^1.0.0"
-  checksum: 10/7397bb4f8aef936df4d9016555b662dcf5279f3c46428b7c7c1ff5e94ab2b87d018b3dda0f4bc1a28b154d5affd0eac5d014511172c085fd8a9cdff9ea7fe043
+  checksum: 10/de7de5e4978354e8e6d9985baf40ea32f908a13560f793bc989930c229cc8d5c3f7b6b2896d8e43eb1a9b4e9e30018ef4b506752fd2a4b4d0dfee4af6841b119
   languageName: node
   linkType: hard
 
@@ -17195,7 +17195,7 @@ __metadata:
     eslint-plugin-prettier: "npm:latest"
     prettier: "npm:latest"
     react-redux: "npm:latest"
-    tsx: "npm:^4.9.3"
+    tsx: "npm:^4.10.3"
   languageName: unknown
   linkType: soft
 
@@ -19383,19 +19383,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.9.3":
-  version: 4.9.3
-  resolution: "tsx@npm:4.9.3"
+"tsx@npm:^4.10.3":
+  version: 4.10.3
+  resolution: "tsx@npm:4.10.3"
   dependencies:
     esbuild: "npm:~0.20.2"
     fsevents: "npm:~2.3.3"
-    get-tsconfig: "npm:^4.7.3"
+    get-tsconfig: "npm:^4.7.5"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/17ed7b748d9f213e0b3795f99ef14edf26f814eb498d4a7be95a253648f39f376009e97d4202fdb3f8a03f3b0e1b3fe6e64b70be83d58beadf1a6158612a163b
+  checksum: 10/37101b7181dd2f4b3576ba172aa435e58e895f2cb3a4157f7b4b44c27fb8114c6f7e3dafdcb01139a440aa841e908fecb108c15e83735cb22db87b63257768ec
   languageName: node
   linkType: hard
 
