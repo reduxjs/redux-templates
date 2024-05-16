@@ -31,5 +31,5 @@
     "react-redux": "latest",
     "tsx": "^4.10.3"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.2.2"
 }
