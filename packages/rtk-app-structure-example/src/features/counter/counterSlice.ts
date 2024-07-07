@@ -1,15 +1,20 @@
 // This file demonstrates typical usage of Redux Toolkit's createSlice function
 // for defining reducer logic and actions, as well as related thunks and selectors.
 
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { RootState, AppThunk } from "@/app/store"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import type { PayloadAction } from "@reduxjs/toolkit"
+
+import type { RootState, AppThunk } from "@/app/store"
+
 import { fetchCount } from "./counterAPI"
 
+// Define the TS type for the counter slice's state
 export interface CounterState {
   value: number
   status: "idle" | "loading" | "failed"
 }
 
+// Define the initial value for the slice state
 const initialState: CounterState = {
   value: 0,
   status: "idle",
@@ -56,7 +61,11 @@ export const counterSlice = createSlice({
   },
 })
 
+// Export the generated action creators for use in components
 export const { increment, decrement, incrementByAmount } = counterSlice.actions
+
+// Export the slice reducer for use in the store configuration
+export default counterSlice.reducer
 
 // Selector functions allows us to select a value from the Redux root state.
 // Selectors can also be defined inline in the `useSelector` call
@@ -91,5 +100,3 @@ export const incrementAsync = createAsyncThunk(
     return response.data
   },
 )
-
-export default counterSlice.reducer

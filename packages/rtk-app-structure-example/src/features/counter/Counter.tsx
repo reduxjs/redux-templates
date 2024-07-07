@@ -1,7 +1,8 @@
 import { useState } from "react"
 
+// Use pre-typed versions of the React-Redux
+// `useDispatch` and `useSelector` hooks
 import { useAppDispatch, useAppSelector } from "@/app/hooks"
-import styles from "./Counter.module.css"
 import {
   decrement,
   increment,
@@ -11,6 +12,8 @@ import {
   selectCount,
   selectStatus,
 } from "./counterSlice"
+
+import styles from "./Counter.module.css"
 
 export const Counter = () => {
   const dispatch = useAppDispatch()
@@ -26,7 +29,9 @@ export const Counter = () => {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          onClick={() => {
+            dispatch(decrement())
+          }}
         >
           -
         </button>
@@ -36,7 +41,9 @@ export const Counter = () => {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          onClick={() => {
+            dispatch(increment())
+          }}
         >
           +
         </button>
@@ -53,7 +60,9 @@ export const Counter = () => {
         />
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementByAmount(incrementValue))}
+          onClick={() => {
+            dispatch(incrementByAmount(incrementValue))
+          }}
         >
           Add Amount
         </button>
@@ -62,7 +71,9 @@ export const Counter = () => {
         <button
           className={styles.asyncButton}
           disabled={status !== "idle"}
-          onClick={() => dispatch(incrementAsync(incrementValue))}
+          onClick={() => {
+            dispatch(incrementAsync(incrementValue))
+          }}
         >
           Add Async
         </button>
