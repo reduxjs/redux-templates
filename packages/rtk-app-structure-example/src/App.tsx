@@ -21,41 +21,14 @@ const App = () => {
           >
             React
           </a>
-          <span>, </span>
+          <span> and </span>
           <a
             className="App-link"
-            href="https://redux.js.org"
+            href="https://redux.js.org/tutorials/essentials/part-2-app-structure"
             target="_blank"
             rel="noopener noreferrer"
           >
             Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://reselect.js.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Reselect
           </a>
         </span>
       </header>
