@@ -1,3 +1,7 @@
+// This file has the exact same functionality as `counterSlice.ts`,
+// but it uses the newest features from Redux Toolkit 2.0.
+// These are optional, but may simplify some of your code.
+
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { createAppSlice } from "../../app/createAppSlice"
 import type { AppThunk } from "../../app/store"
