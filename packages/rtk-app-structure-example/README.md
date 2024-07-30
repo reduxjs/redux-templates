@@ -2,14 +2,13 @@
 
 This slimmed-down version of [the Redux Toolkit template for Vite](https://github.com/reduxjs/redux-templates/tree/master/packages/vite-template-redux) shows the standard app structure and store setup for Redux Toolkit, TypeScript, and React.
 
-It's used in the ["Redux Essentials" tutorial Part 2]() as an embeddable CodeSandbox to help teach Redux app structure.
+It's used in the ["Redux Essentials" tutorial Part 2](https://redux.js.org/tutorials/essentials/part-2-app-structure) as an embeddable CodeSandbox to help teach Redux app structure.
 
 ## Scripts
 
 - `dev`/`start` - start dev server and open browser
 - `build` - build for production
 - `preview` - locally preview production build
-- `test` - launch test runner
 
 ## Inspiration
 
