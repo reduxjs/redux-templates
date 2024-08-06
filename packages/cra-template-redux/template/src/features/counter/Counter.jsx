@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import { useDispatch, useSelector } from "react-redux"
-import styles from "./Counter.module.css"
+import { useDispatch, useSelector } from 'react-redux'
+import styles from './Counter.module.css'
 import {
   decrement,
   increment,
@@ -10,13 +10,13 @@ import {
   incrementIfOdd,
   selectCount,
   selectStatus,
-} from "./counterSlice"
+} from './counterSlice'
 
 export const Counter = () => {
   const dispatch = useDispatch()
   const count = useSelector(selectCount)
   const status = useSelector(selectStatus)
-  const [incrementAmount, setIncrementAmount] = useState("2")
+  const [incrementAmount, setIncrementAmount] = useState('2')
 
   const incrementValue = Number(incrementAmount) || 0
 
@@ -47,7 +47,7 @@ export const Counter = () => {
           aria-label="Set increment amount"
           value={incrementAmount}
           type="number"
-          onChange={e => {
+          onChange={(e) => {
             setIncrementAmount(e.target.value)
           }}
         />
@@ -59,7 +59,7 @@ export const Counter = () => {
         </button>
         <button
           className={styles.asyncButton}
-          disabled={status !== "idle"}
+          disabled={status !== 'idle'}
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async

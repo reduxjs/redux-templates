@@ -1,7 +1,7 @@
-import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import { Provider } from "react-redux"
-import { makeStore } from "../app/store"
+import { render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { Provider } from 'react-redux'
+import { makeStore } from '../app/store'
 
 /**
  * Renders the given React element with Redux Provider and custom store.
