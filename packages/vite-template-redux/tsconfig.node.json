@@ -3,6 +3,7 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "outDir": "dist",
     "allowSyntheticDefaultImports": true
   },
   "include": ["vite.config.ts"]
