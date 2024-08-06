@@ -21,7 +21,7 @@
     "test": "yarn workspaces foreach -A run test"
   },
   "devDependencies": {
-    "tsx": "^4.10.3"
+    "tsx": "^4.16.5"
   },
   "packageManager": "yarn@4.2.2"
 }
