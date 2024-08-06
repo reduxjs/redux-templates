@@ -21,14 +21,6 @@
     "test": "yarn workspaces foreach -A run test"
   },
   "devDependencies": {
-    "@reduxjs/toolkit": "latest",
-    "@typescript-eslint/eslint-plugin": "latest",
-    "@typescript-eslint/parser": "latest",
-    "eslint": "latest",
-    "eslint-config-prettier": "latest",
-    "eslint-plugin-prettier": "latest",
-    "prettier": "latest",
-    "react-redux": "latest",
     "tsx": "^4.10.3"
   },
   "packageManager": "yarn@4.2.2"
