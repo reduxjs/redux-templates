@@ -1,10 +1,10 @@
 #!/usr/bin/env -vS node --import=tsx
 
-import { exec as _exec } from 'node:child_process';
+import * as childProcess from 'node:child_process';
 import * as path from 'node:path';
 import { promisify } from 'node:util';
 
-const exec = promisify(_exec);
+const execFile = promisify(childProcess.execFile);
 
 /**
  * Retrieves a map of Yarn workspaces and their corresponding locations.
@@ -13,38 +13,36 @@ const exec = promisify(_exec);
  * @throws An error If there is an error while listing Yarn workspaces.
  */
 const listYarnWorkspaces = async () => {
-  try {
-    // Execute `yarn workspaces list --json` command
-    const { stdout } = await exec('yarn workspaces list --json');
+  // Execute `yarn workspaces list --json` command
+  const { stdout } = await execFile('yarn', ['workspaces', 'list', '--json'], {
+    shell: true,
+  });
 
-    // The output includes multiple JSON lines, one for each workspace.
-    // Split stdout by newlines and filter out empty lines or lines that are not JSON (like yarn logs)
-    const workspaces = stdout
-      .split('\n')
-      .filter((line) => {
-        try {
-          JSON.parse(line);
-          return true;
-        } catch (error) {
-          return false;
-        }
-      })
-      .map((line) => JSON.parse(line))
-      .filter(({ location }) => location !== '.');
+  // The output includes multiple JSON lines, one for each workspace.
+  // Split stdout by newlines and filter out empty lines or lines that are not JSON (like yarn logs)
+  const workspaces = stdout
+    .trim()
+    .split('\n')
+    .filter((line) => {
+      try {
+        JSON.parse(line);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    })
+    .map((line) => JSON.parse(line))
+    .filter(({ location }) => location !== '.');
 
-    // Extract workspace names or any other property you need
-    const workspaceNames = new Map(
-      workspaces.map((workspace) => [
-        workspace.name,
-        path.resolve(import.meta.dirname, '..', workspace.location),
-      ])
-    );
+  // Extract workspace names or any other property you need
+  const workspaceNames = new Map(
+    workspaces.map((workspace) => [
+      workspace.name,
+      path.resolve(import.meta.dirname, '..', workspace.location),
+    ])
+  );
 
-    return workspaceNames;
-  } catch (error) {
-    console.error('Failed to list Yarn workspaces:', error);
-    throw error;
-  }
+  return workspaceNames;
 };
 
 const workspaces = await listYarnWorkspaces();
@@ -60,24 +58,23 @@ async function constructGitHubUrl(): Promise<{
   currentBranch: string;
   commitHash: string;
 }> {
-  try {
-    const remoteUrl = (await exec('git remote get-url origin')).stdout.trim();
+  const remoteUrl = (
+    await execFile('git', ['remote', 'get-url', 'origin'], { shell: true })
+  ).stdout.trim();
 
-    const currentBranch = (
-      await exec('git branch --show-current')
-    ).stdout.trim();
+  const currentBranch = (
+    await execFile('git', ['branch', '--show-current'], { shell: true })
+  ).stdout.trim();
 
-    const commitHash = (await exec('git rev-parse --short HEAD')).stdout.trim();
+  const commitHash = (
+    await execFile('git', ['rev-parse', '--short', 'HEAD'], { shell: true })
+  ).stdout.trim();
 
-    return {
-      remoteUrl,
-      currentBranch,
-      commitHash,
-    };
-  } catch (error) {
-    console.error(`Error: ${error}`);
-    throw error;
-  }
+  return {
+    remoteUrl,
+    currentBranch,
+    commitHash,
+  };
 }
 
 const gitHubUrl = await constructGitHubUrl();
@@ -94,10 +91,10 @@ const allTemplates = {
  * Mocks a template by executing the template related command.
  *
  * @param template - The name of the template to mock.
- * @returns A promise that resolves when the template execution is complete.
+ * @returns A {@linkcode Promise | promise} that resolves when the template execution is complete.
  */
 const mockTemplate = async (template: string) => {
-  await exec(allTemplates[template]);
+  await execFile(allTemplates[template], { shell: true });
 };
 
 await mockTemplate(process.argv.at(-1)!);
