@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { useState } from "react"
 import {
   StyleSheet,
@@ -20,7 +21,7 @@ import {
   selectStatus,
 } from "./counterSlice"
 
-export const Counter = () => {
+export const Counter = (): JSX.Element => {
   const isDarkMode = useColorScheme() === "dark"
   const textStyle = {
     color: isDarkMode ? TypedColors.light : TypedColors.dark,
@@ -58,7 +59,7 @@ export const Counter = () => {
         <TextInput
           aria-label="Set increment amount"
           style={[styles.textbox, textStyle]}
-          value={`${incrementAmount}`}
+          value={incrementAmount}
           keyboardType="numeric"
           onChangeText={setIncrementAmount}
         />

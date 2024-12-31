@@ -17,7 +17,7 @@ export const Header = () => {
       ]}
     >
       <Animated.Image
-        accessibilityRole={"image"}
+        accessibilityRole="image"
         source={logo}
         style={{ height, transform: [{ translateY: bounce }] }}
       />

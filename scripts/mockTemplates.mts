@@ -84,7 +84,7 @@ const allTemplates = {
   'cra-template-redux-typescript': `npx create-react-app@latest example --template file:${workspaces.get('cra-template-redux-typescript')}`,
   'expo-template-redux-typescript': `npx create-expo@latest example --template file:${workspaces.get('expo-template-redux-typescript')} && cd example && npm install`,
   'react-native-template-redux-typescript': `npx @react-native-community/cli@latest init app --template file:${workspaces.get('react-native-template-redux-typescript')} --pm=npm --directory example`,
-  'vite-template-redux': `npx -y tiged@rc -D ${gitHubUrl.remoteUrl}/packages/vite-template-redux#${gitHubUrl.currentBranch} example -v && cd example && npm install`,
+  'vite-template-redux': `yarn rimraf ~/.degit && npx -y tiged@rc -D ${gitHubUrl.remoteUrl}/packages/vite-template-redux#${gitHubUrl.currentBranch} example -v && cd example && npm install`,
 };
 
 /**

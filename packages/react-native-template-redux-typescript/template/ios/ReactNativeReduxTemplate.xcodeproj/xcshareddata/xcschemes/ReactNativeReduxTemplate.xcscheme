@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "template.app"
-               BlueprintName = "template"
-               ReferencedContainer = "container:template.xcodeproj">
+               BuildableName = "ReactNativeReduxTemplate.app"
+               BlueprintName = "ReactNativeReduxTemplate"
+               ReferencedContainer = "container:ReactNativeReduxTemplate.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "templateTests.xctest"
-               BlueprintName = "templateTests"
-               ReferencedContainer = "container:template.xcodeproj">
+               BuildableName = "ReactNativeReduxTemplateTests.xctest"
+               BlueprintName = "ReactNativeReduxTemplateTests"
+               ReferencedContainer = "container:ReactNativeReduxTemplate.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "template.app"
-            BlueprintName = "template"
-            ReferencedContainer = "container:template.xcodeproj">
+            BuildableName = "ReactNativeReduxTemplate.app"
+            BlueprintName = "ReactNativeReduxTemplate"
+            ReferencedContainer = "container:ReactNativeReduxTemplate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "template.app"
-            BlueprintName = "template"
-            ReferencedContainer = "container:template.xcodeproj">
+            BuildableName = "ReactNativeReduxTemplate.app"
+            BlueprintName = "ReactNativeReduxTemplate"
+            ReferencedContainer = "container:ReactNativeReduxTemplate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
