@@ -32,9 +32,6 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         uses: actions/checkout@v4
 
-      - run: echo ${{ github.event.pull_request.head.sha }}
-      - run: echo ${{ github.head_ref }}
-
       - name: Setup Node.js ${{ matrix.node }} for ${{ matrix.packages }} on ${{ matrix.os }}
         uses: actions/setup-node@v4
         with:
