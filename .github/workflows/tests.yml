@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   test:
@@ -40,9 +40,6 @@ jobs:
       - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         run: npx -y tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
 
-      - name: show folder
-        run: ls -R
-
       - name: Run test for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         working-directory: example
         run: npm run test
@@ -62,3 +59,8 @@ jobs:
       - name: Build ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         working-directory: example
         run: npm run build
+
+      - name: Did we fail?
+        if: failure()
+        working-directory: packages/${{ matrix.packages }}
+        run: ls -R
