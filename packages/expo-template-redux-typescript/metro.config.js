@@ -1,3 +1,5 @@
 require("ts-node/register")
 
-module.exports = require("./metro.config.ts")
+const { config } = require("./metro.config.ts")
+
+module.exports = config

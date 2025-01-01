@@ -1,5 +1,6 @@
-import { getDefaultConfig } from 'expo/metro-config';
+import { getDefaultConfig } from "expo/metro-config"
+import { mergeConfig } from "metro-config"
 
-const config = getDefaultConfig(__dirname);
+const config = mergeConfig(getDefaultConfig(__dirname))
 
-module.exports = config;
+export { config }
