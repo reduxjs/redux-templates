@@ -19,14 +19,16 @@
   "main": "template.json",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reduxjs/cra-template-redux.git"
+    "url": "git+https://github.com/reduxjs/cra-template-redux.git",
+    "directory": "packages/cra-template-redux"
   },
   "license": "MIT",
   "engines": {
     "node": ">=8"
   },
+  "homepage": "https://github.com/reduxjs/redux-templates/tree/HEAD/packages/cra-template-redux#readme",
   "bugs": {
-    "url": "https://github.com/reduxjs/cra-template-redux/issues"
+    "url": "https://github.com/reduxjs/redux-templates/issues"
   },
   "files": [
     "template",

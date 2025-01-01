@@ -1,13 +1,15 @@
 {
   "name": "redux-templates",
+  "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "homepage": "https://github.com/reduxjs/redux-templates#readme",
+  "bugs": {
+    "url": "https://github.com/reduxjs/redux-templates/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reduxjs/redux-templates.git"
-  },
-  "bugs": {
-    "url": "https://github.com/reduxjs/redux-templates/issues"
   },
   "workspaces": [
     "packages/*"

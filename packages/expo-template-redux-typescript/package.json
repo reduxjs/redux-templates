@@ -17,7 +17,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reduxjs/redux-templates.git"
+    "url": "git+https://github.com/reduxjs/redux-templates.git",
+    "directory": "packages/expo-template-redux-typescript"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
