@@ -38,7 +38,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        run: npx tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
+        run: npx -y tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
 
       - name: show folder
         run: ls -R
