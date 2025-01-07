@@ -1,10 +1,10 @@
 #!/usr/bin/env -vS node --import=tsx
 
-import * as childProcess from 'node:child_process';
-import * as path from 'node:path';
-import { promisify } from 'node:util';
+import * as childProcess from "node:child_process"
+import * as path from "node:path"
+import { promisify } from "node:util"
 
-const execFile = promisify(childProcess.execFile);
+const execFile = promisify(childProcess.execFile)
 
 /**
  * Retrieves a map of Yarn workspaces and their corresponding locations.
@@ -14,38 +14,38 @@ const execFile = promisify(childProcess.execFile);
  */
 const listYarnWorkspaces = async () => {
   // Execute `yarn workspaces list --json` command
-  const { stdout } = await execFile('yarn', ['workspaces', 'list', '--json'], {
+  const { stdout } = await execFile("yarn", ["workspaces", "list", "--json"], {
     shell: true,
-  });
+  })
 
   // The output includes multiple JSON lines, one for each workspace.
   // Split stdout by newlines and filter out empty lines or lines that are not JSON (like yarn logs)
   const workspaces = stdout
     .trim()
-    .split('\n')
-    .filter((line) => {
+    .split("\n")
+    .filter(line => {
       try {
-        JSON.parse(line);
-        return true;
+        JSON.parse(line)
+        return true
       } catch (error) {
-        return false;
+        return false
       }
     })
-    .map((line) => JSON.parse(line))
-    .filter(({ location }) => location !== '.');
+    .map(line => JSON.parse(line))
+    .filter(({ location }) => location !== ".")
 
   // Extract workspace names or any other property you need
   const workspaceNames = new Map(
-    workspaces.map((workspace) => [
+    workspaces.map(workspace => [
       workspace.name,
-      path.resolve(import.meta.dirname, '..', workspace.location),
-    ])
-  );
+      path.resolve(import.meta.dirname, "..", workspace.location),
+    ]),
+  )
 
-  return workspaceNames;
-};
+  return workspaceNames
+}
 
-const workspaces = await listYarnWorkspaces();
+const workspaces = await listYarnWorkspaces()
 
 /**
  * Constructs a GitHub URL based on the current Git repository information.
@@ -54,38 +54,38 @@ const workspaces = await listYarnWorkspaces();
  * @throws An error If there is an error while retrieving the Git repository information.
  */
 async function constructGitHubUrl(): Promise<{
-  remoteUrl: string;
-  currentBranch: string;
-  commitHash: string;
+  remoteUrl: string
+  currentBranch: string
+  commitHash: string
 }> {
   const remoteUrl = (
-    await execFile('git', ['remote', 'get-url', 'origin'], { shell: true })
-  ).stdout.trim();
+    await execFile("git", ["remote", "get-url", "origin"], { shell: true })
+  ).stdout.trim()
 
   const currentBranch = (
-    await execFile('git', ['branch', '--show-current'], { shell: true })
-  ).stdout.trim();
+    await execFile("git", ["branch", "--show-current"], { shell: true })
+  ).stdout.trim()
 
   const commitHash = (
-    await execFile('git', ['rev-parse', '--short', 'HEAD'], { shell: true })
-  ).stdout.trim();
+    await execFile("git", ["rev-parse", "--short", "HEAD"], { shell: true })
+  ).stdout.trim()
 
   return {
     remoteUrl,
     currentBranch,
     commitHash,
-  };
+  }
 }
 
-const gitHubUrl = await constructGitHubUrl();
+const gitHubUrl = await constructGitHubUrl()
 
 const allTemplates = {
-  'cra-template-redux': `npx create-react-app@latest example --template file:${workspaces.get('cra-template-redux')}`,
-  'cra-template-redux-typescript': `npx create-react-app@latest example --template file:${workspaces.get('cra-template-redux-typescript')}`,
-  'expo-template-redux-typescript': `npx create-expo@latest example --template file:${workspaces.get('expo-template-redux-typescript')} && cd example && npm install`,
-  'react-native-template-redux-typescript': `npx @react-native-community/cli@latest init app --template file:${workspaces.get('react-native-template-redux-typescript')} --pm=npm --directory example`,
-  'vite-template-redux': `npx -y tiged@rc -D ${gitHubUrl.remoteUrl}/packages/vite-template-redux#${gitHubUrl.currentBranch} example -v && cd example && npm install`,
-};
+  "cra-template-redux": `npx create-react-app@latest example --template file:${workspaces.get("cra-template-redux")}`,
+  "cra-template-redux-typescript": `npx create-react-app@latest example --template file:${workspaces.get("cra-template-redux-typescript")}`,
+  "expo-template-redux-typescript": `npx create-expo@latest example --template file:${workspaces.get("expo-template-redux-typescript")} && cd example && npm install`,
+  "react-native-template-redux-typescript": `npx @react-native-community/cli@latest init app --template file:${workspaces.get("react-native-template-redux-typescript")} --pm=npm --directory example`,
+  "vite-template-redux": `npx -y tiged@rc -D ${gitHubUrl.remoteUrl}/packages/vite-template-redux#${gitHubUrl.currentBranch} example -v && cd example && npm install`,
+}
 
 /**
  * Mocks a template by executing the template related command.
@@ -94,7 +94,7 @@ const allTemplates = {
  * @returns A {@linkcode Promise | promise} that resolves when the template execution is complete.
  */
 const mockTemplate = async (template: string) => {
-  await execFile(allTemplates[template], { shell: true });
-};
+  await execFile(allTemplates[template], { shell: true })
+}
 
-await mockTemplate(process.argv.at(-1)!);
+await mockTemplate(process.argv.at(-1)!)

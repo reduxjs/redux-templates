@@ -13,11 +13,11 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         packages:
           [
-            'cra-template-redux',
-            'cra-template-redux-typescript',
-            'expo-template-redux-typescript',
-            'react-native-template-redux-typescript',
-            'vite-template-redux',
+            "cra-template-redux",
+            "cra-template-redux-typescript",
+            "expo-template-redux-typescript",
+            "react-native-template-redux-typescript",
+            "vite-template-redux",
           ]
 
     steps:
@@ -52,9 +52,9 @@ jobs:
         if: matrix.packages == 'react-native-template-redux-typescript' || matrix.packages == 'expo-template-redux-typescript'
         uses: actions/setup-java@v4
         with:
-          java-version: '21.x'
-          distribution: 'temurin'
-          cache: 'gradle'
+          java-version: "21.x"
+          distribution: "temurin"
+          cache: "gradle"
 
       - name: Build ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         working-directory: example
