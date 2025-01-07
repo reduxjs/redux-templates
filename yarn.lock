@@ -17171,6 +17171,8 @@ __metadata:
   resolution: "redux-templates@workspace:."
   dependencies:
     "@types/node": "npm:^22.10.5"
+    eslint: "npm:^9.17.0"
+    prettier: "npm:^3.4.2"
     rimraf: "npm:^6.0.1"
     tsx: "npm:^4.19.2"
     typescript: "npm:^5.7.2"
