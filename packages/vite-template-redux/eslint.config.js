@@ -13,16 +13,14 @@ const ESLintConfig = config(
   configs.stylisticTypeChecked,
   vitestPlugin.configs.recommended,
   {
-    ...reactPlugin.configs.flat?.["jsx-runtime"],
+    ...reactPlugin.configs.flat["jsx-runtime"],
     name: "main",
     linterOptions: { reportUnusedDisableDirectives: 2 },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ["./*.?(m|c)js?(x)"],
-        },
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },

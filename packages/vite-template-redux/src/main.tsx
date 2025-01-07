@@ -1,4 +1,4 @@
-import React from "react"
+import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import App from "./App"
@@ -11,11 +11,11 @@ if (container) {
   const root = createRoot(container)
 
   root.render(
-    <React.StrictMode>
+    <StrictMode>
       <Provider store={store}>
         <App />
       </Provider>
-    </React.StrictMode>,
+    </StrictMode>,
   )
 } else {
   throw new Error(
