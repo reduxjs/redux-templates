@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from "react"
+import type { JSX, PropsWithChildren } from "react"
 import { useRef } from "react"
 import type {
   GestureResponderEvent,
@@ -14,7 +14,7 @@ export const AsyncButton = ({
   style,
   children,
   ...restProps
-}: AsyncButtonProps) => {
+}: AsyncButtonProps): JSX.Element => {
   const progress = useRef(new Animated.Value(0)).current
   const opacity = useRef(new Animated.Value(1)).current
 
