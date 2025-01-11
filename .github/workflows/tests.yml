@@ -36,6 +36,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          check-latest: true
 
       - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         run: npx -y tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
@@ -44,9 +45,9 @@ jobs:
         working-directory: example
         run: npm run test
 
-      # - name: Run lint for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-      #   working-directory: example
-      #   run: npm run lint
+      - name: Run lint for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        working-directory: example
+        run: npm run lint
 
       - name: Set up JDK for React Native build for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         if: matrix.packages == 'react-native-template-redux-typescript' || matrix.packages == 'expo-template-redux-typescript'
