@@ -2,16 +2,22 @@
   "package": {
     "dependencies": {
       "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+      "@eslint/js": "^9.19.0",
       "@reduxjs/toolkit": "^2.5.1",
       "@testing-library/jest-dom": "^6.6.3",
       "@testing-library/react": "^16.2.0",
       "@testing-library/user-event": "^14.6.1",
       "eslint": "^9.19.0",
       "eslint-config-prettier": "^10.0.1",
+      "eslint-plugin-jest": "^28.11.0",
+      "eslint-plugin-react-hooks": "^5.1.0",
+      "globals": "^15.14.0",
       "prettier": "^3.4.2",
       "react-redux": "^9.2.0",
+      "typescript-eslint": "^8.22.0",
       "web-vitals": "^4.2.4"
     },
+    "eslintConfig": {},
     "scripts": {
       "format": "prettier --write .",
       "lint": "eslint .",

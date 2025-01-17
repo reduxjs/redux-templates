@@ -1,5 +1,4 @@
 import { useState } from "react"
-
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import styles from "./Counter.module.css"
 import {
@@ -30,9 +29,9 @@ export const Counter = () => {
         >
           -
         </button>
-        <span aria-label="Count" className={styles.value}>
+        <label aria-label="Count" className={styles.value}>
           {count}
-        </span>
+        </label>
         <button
           className={styles.button}
           aria-label="Increment value"

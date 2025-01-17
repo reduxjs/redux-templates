@@ -1,105 +1,146 @@
-import { screen, waitFor } from "@testing-library/react"
+import { act, screen } from "@testing-library/react"
 import App from "./App"
 import { renderWithProviders } from "./utils/test-utils"
 
 test("App should have correct initial render", () => {
   renderWithProviders(<App />)
 
+  const countLabel = screen.getByLabelText("Count")
+
+  const incrementValueInput = screen.getByLabelText("Set increment amount")
+
   // The app should be rendered correctly
   expect(screen.getByText(/learn/i)).toBeInTheDocument()
 
   // Initial state: count should be 0, incrementValue should be 2
-  expect(screen.getByLabelText("Count")).toHaveTextContent("0")
-  expect(screen.getByLabelText("Set increment amount")).toHaveValue(2)
+  expect(countLabel).toHaveTextContent("0")
+  expect(incrementValueInput).toHaveValue(2)
 })
 
 test("Increment value and Decrement value should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
+  const countLabel = screen.getByLabelText("Count")
+
+  const incrementValueButton = screen.getByLabelText("Increment value")
+
+  const decrementValueButton = screen.getByLabelText("Decrement value")
+
   // Click on "+" => Count should be 1
-  await user.click(screen.getByLabelText("Increment value"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("1")
+  await user.click(incrementValueButton)
+  expect(countLabel).toHaveTextContent("1")
 
   // Click on "-" => Count should be 0
-  await user.click(screen.getByLabelText("Decrement value"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("0")
+  await user.click(decrementValueButton)
+  expect(countLabel).toHaveTextContent("0")
 })
 
 test("Add Amount should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
-  // "Add Amount" button is clicked => Count should be 2
-  await user.click(screen.getByText("Add Amount"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("2")
+  const countLabel = screen.getByLabelText("Count")
 
   const incrementValueInput = screen.getByLabelText("Set increment amount")
+
+  const addAmountButton = screen.getByText("Add Amount")
+
+  // "Add Amount" button is clicked => Count should be 2
+  await user.click(addAmountButton)
+  expect(countLabel).toHaveTextContent("2")
+
   // incrementValue is 2, click on "Add Amount" => Count should be 4
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "2")
-  await user.click(screen.getByText("Add Amount"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("4")
+  await user.click(addAmountButton)
+  expect(countLabel).toHaveTextContent("4")
 
   // [Negative number] incrementValue is -1, click on "Add Amount" => Count should be 3
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
-  await user.click(screen.getByText("Add Amount"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("3")
+  await user.click(addAmountButton)
+  expect(countLabel).toHaveTextContent("3")
 })
 
 it("Add Async should work as expected", async () => {
-  const { user } = renderWithProviders(<App />)
+  jest.useFakeTimers()
 
-  // "Add Async" button is clicked => Count should be 2
-  await user.click(screen.getByText("Add Async"))
+  const { user } = renderWithProviders(<App />, {
+    userEventOptions: { advanceTimers: jest.runOnlyPendingTimers },
+  })
 
-  await waitFor(() =>
-    expect(screen.getByLabelText("Count")).toHaveTextContent("2"),
-  )
+  const addAsyncButton = screen.getByText("Add Async")
+
+  const countLabel = screen.getByLabelText("Count")
 
   const incrementValueInput = screen.getByLabelText("Set increment amount")
-  // incrementValue is 2, click on "Add Async" => Count should be 4
+
+  await user.click(addAsyncButton)
+
+  act(() => {
+    jest.advanceTimersByTime(500)
+  })
+
+  // "Add Async" button is clicked => Count should be 2
+  expect(countLabel).toHaveTextContent("2")
+
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "2")
 
-  await user.click(screen.getByText("Add Async"))
-  await waitFor(() =>
-    expect(screen.getByLabelText("Count")).toHaveTextContent("4"),
-  )
+  await user.click(addAsyncButton)
 
-  // [Negative number] incrementValue is -1, click on "Add Async" => Count should be 3
+  act(() => {
+    jest.advanceTimersByTime(500)
+  })
+
+  // incrementValue is 2, click on "Add Async" => Count should be 4
+  expect(countLabel).toHaveTextContent("4")
+
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
-  await user.click(screen.getByText("Add Async"))
-  await waitFor(() =>
-    expect(screen.getByLabelText("Count")).toHaveTextContent("3"),
-  )
+  await user.click(addAsyncButton)
+
+  act(() => {
+    jest.advanceTimersByTime(500)
+  })
+
+  // [Negative number] incrementValue is -1, click on "Add Async" => Count should be 3
+  expect(countLabel).toHaveTextContent("3")
+
+  jest.useRealTimers()
 })
 
 test("Add If Odd should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
-  // "Add If Odd" button is clicked => Count should stay 0
-  await user.click(screen.getByText("Add If Odd"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("0")
+  const countLabel = screen.getByLabelText("Count")
 
-  // Click on "+" => Count should be updated to 1
-  await user.click(screen.getByLabelText("Increment value"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("1")
-
-  // "Add If Odd" button is clicked => Count should be updated to 3
-  await user.click(screen.getByText("Add If Odd"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("3")
+  const addIfOddButton = screen.getByText("Add If Odd")
 
   const incrementValueInput = screen.getByLabelText("Set increment amount")
+
+  const incrementValueButton = screen.getByLabelText("Increment value")
+
+  // "Add If Odd" button is clicked => Count should stay 0
+  await user.click(addIfOddButton)
+  expect(countLabel).toHaveTextContent("0")
+
+  // Click on "+" => Count should be updated to 1
+  await user.click(incrementValueButton)
+  expect(countLabel).toHaveTextContent("1")
+
+  // "Add If Odd" button is clicked => Count should be updated to 3
+  await user.click(addIfOddButton)
+  expect(countLabel).toHaveTextContent("3")
+
   // incrementValue is 1, click on "Add If Odd" => Count should be updated to 4
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "1")
-  await user.click(screen.getByText("Add If Odd"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("4")
+  await user.click(addIfOddButton)
+  expect(countLabel).toHaveTextContent("4")
 
   // click on "Add If Odd" => Count should stay 4
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
-  await user.click(screen.getByText("Add If Odd"))
-  expect(screen.getByLabelText("Count")).toHaveTextContent("4")
+  await user.click(addIfOddButton)
+  expect(countLabel).toHaveTextContent("4")
 })
