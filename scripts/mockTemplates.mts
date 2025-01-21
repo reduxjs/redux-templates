@@ -1,10 +1,16 @@
 #!/usr/bin/env -vS node --import=tsx
 
 import * as childProcess from "node:child_process"
+import * as fs from "node:fs/promises"
+import * as os from "node:os"
 import * as path from "node:path"
 import { promisify } from "node:util"
 
 const execFile = promisify(childProcess.execFile)
+
+const homeOrTempDir = os.tmpdir() || os.homedir()
+
+const testDirectory = path.join(homeOrTempDir, "test-redux-templates")
 
 /**
  * Retrieves a map of Yarn workspaces and their corresponding locations.
@@ -37,8 +43,8 @@ const listYarnWorkspaces = async () => {
   // Extract workspace names or any other property you need
   const workspaceNames = new Map(
     workspaces.map(workspace => [
-      workspace.name,
-      path.resolve(import.meta.dirname, "..", workspace.location),
+      workspace.name as string,
+      path.join(import.meta.dirname, "..", workspace.location),
     ]),
   )
 
@@ -79,22 +85,174 @@ async function constructGitHubUrl(): Promise<{
 
 const gitHubUrl = await constructGitHubUrl()
 
-const allTemplates = {
-  "cra-template-redux": `npx create-react-app@latest example --template file:${workspaces.get("cra-template-redux")}`,
-  "cra-template-redux-typescript": `npx create-react-app@latest example --template file:${workspaces.get("cra-template-redux-typescript")}`,
-  "expo-template-redux-typescript": `npx create-expo@latest example --template file:${workspaces.get("expo-template-redux-typescript")} && cd example && npm install`,
-  "react-native-template-redux-typescript": `npx @react-native-community/cli@latest init app --template file:${workspaces.get("react-native-template-redux-typescript")} --pm=npm --directory example`,
-  "vite-template-redux": `npx -y tiged@rc -D ${gitHubUrl.remoteUrl}/packages/vite-template-redux#${gitHubUrl.currentBranch} example -v && cd example && npm install`,
+type AllTemplates = {
+  [key: string]: {
+    command: string
+    args: string[]
+    options?: childProcess.ExecFileOptionsWithStringEncoding
+  }
+}
+
+const allTemplates: AllTemplates = {
+  "cra-template-redux": {
+    command: "npx",
+    args: [
+      "-y",
+      "create-react-app@latest",
+      "example",
+      "--template",
+      `file:${workspaces.get("cra-template-redux")}`,
+    ],
+  },
+  "cra-template-redux-typescript": {
+    command: "npx",
+    args: [
+      "-y",
+      "create-react-app@latest",
+      "example",
+      "--template",
+      `file:${workspaces.get("cra-template-redux-typescript")}`,
+    ],
+  },
+  "expo-template-redux-typescript": {
+    command: "npx",
+    args: [
+      "-y",
+      "create-expo@latest",
+      "example",
+      "--template",
+      `file:${workspaces.get("expo-template-redux-typescript")}`,
+    ],
+  },
+  "react-native-template-redux-typescript": {
+    command: "npx",
+    args: [
+      "-y",
+      "@react-native-community/cli@latest",
+      "init",
+      "app",
+      "--template",
+      `file:${workspaces.get("react-native-template-redux-typescript")}`,
+      "--pm=npm",
+      "--directory",
+      "example",
+    ],
+  },
+  "vite-template-redux": {
+    command: "npx",
+    args: [
+      "-y",
+      "tiged@rc",
+      "-Dv",
+      `${gitHubUrl.remoteUrl}/packages/vite-template-redux#${gitHubUrl.currentBranch}`,
+      "example",
+    ],
+  },
 }
 
 /**
- * Mocks a template by executing the template related command.
- *
- * @param template - The name of the template to mock.
- * @returns A {@linkcode Promise | promise} that resolves when the template execution is complete.
+ * @param templates - The name of the template to mock.
+ * @returns A map of template names and their corresponding temporary directories.
  */
-const mockTemplate = async (template: string) => {
-  await execFile(allTemplates[template], { shell: true })
+const createTempDirectories = async (templates: string[]) => {
+  await fs.rm(path.join(os.homedir(), ".degit"), {
+    force: true,
+    recursive: true,
+  })
+
+  return Object.fromEntries(
+    await Promise.all(
+      templates.map(async template => {
+        const tempDirectory = path.resolve(testDirectory, template)
+
+        console.log(
+          `Creating temporary directory for ${template} at ${tempDirectory}`,
+        )
+
+        await fs.mkdir(tempDirectory, { recursive: true })
+
+        return [template, tempDirectory] as const
+      }),
+    ),
+  )
 }
 
-await mockTemplate(process.argv.at(-1)!)
+/**
+ * Mocks templates by executing the template related command.
+ *
+ * @param templates - The name of the templates to mock.
+ * @returns A {@linkcode Promise | promise} that resolves when the template execution is complete.
+ */
+const mockTemplate = async (templates: string[]) => {
+  await fs.rm(testDirectory, { recursive: true, force: true })
+
+  console.log(`Testing the following templates:\n\n${templates.join(",\n")}\n`)
+
+  const tempDirectories = await createTempDirectories(templates)
+
+  await Promise.all(
+    templates.map(async template => {
+      const { command, args } = allTemplates[template]
+
+      const tempDirectory = tempDirectories[template]
+
+      const { stdout, stderr } = await execFile(command, args, {
+        encoding: "utf-8",
+        shell: true,
+        cwd: tempDirectory,
+      })
+
+      console.log(stdout.trim())
+
+      console.error(stderr)
+
+      const cwd = path.join(tempDirectory, "example")
+
+      const install = await execFile("npm", ["install"], {
+        encoding: "utf-8",
+        shell: true,
+        cwd,
+      })
+
+      console.log(install.stdout.trim())
+
+      console.error(install.stderr)
+
+      const test = await execFile("npm", ["run", "test"], {
+        encoding: "utf-8",
+        shell: true,
+        cwd,
+      })
+
+      console.log(test.stdout.trim())
+
+      console.error(test.stderr)
+
+      const lint = await execFile("npm", ["run", "lint"], {
+        encoding: "utf-8",
+        shell: true,
+        cwd,
+      })
+
+      console.log(lint.stdout.trim())
+
+      console.error(lint.stderr)
+
+      const build = await execFile("npm", ["run", "build"], {
+        encoding: "utf-8",
+        shell: true,
+        cwd,
+      })
+
+      console.log(build.stdout.trim())
+
+      console.error(build.stderr)
+    }),
+  )
+}
+
+const processArgs = process.argv.slice(2)
+
+await mockTemplate(
+  processArgs.length === 0 ? Object.keys(allTemplates) : processArgs,
+)

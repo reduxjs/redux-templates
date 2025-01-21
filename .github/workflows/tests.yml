@@ -2,6 +2,10 @@ name: CI
 
 on: [push, pull_request, workflow_dispatch]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
@@ -9,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [20.x]
+        node: [22.x]
         os: [ubuntu-latest, windows-latest]
         packages:
           [
@@ -38,16 +42,9 @@ jobs:
           node-version: ${{ matrix.node }}
           check-latest: true
 
-      - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        run: npx -y tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
-
-      - name: Run test for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        working-directory: example
-        run: npm run test
-
-      - name: Run lint for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        working-directory: example
-        run: npm run lint
+      - name: Set up environment variables for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: echo "TEMP=$USERPROFILE\AppData\Local\Temp" >> $GITHUB_ENV
 
       - name: Set up JDK for React Native build for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
         if: matrix.packages == 'react-native-template-redux-typescript' || matrix.packages == 'expo-template-redux-typescript'
@@ -57,9 +54,8 @@ jobs:
           distribution: "temurin"
           cache: "gradle"
 
-      - name: Build ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        working-directory: example
-        run: npm run build
+      - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        run: npx -y tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
 
       - name: Did we fail?
         if: failure()

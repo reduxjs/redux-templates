@@ -19,8 +19,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint . --cache --cache-strategy content",
     "lint:fix": "eslint . --fix",
-    "build": "yarn workspaces foreach -A run build",
-    "test": "yarn workspaces foreach -A run test"
+    "build": "yarn workspaces foreach -A run build"
   },
   "devDependencies": {
     "@types/node": "^22.13.0",
