@@ -1,9 +1,10 @@
+import type { JSX } from "react"
 import { Animated, StyleSheet, View, useColorScheme } from "react-native"
 import { useBounceAnimation, useViewportUnits } from "../app/hooks"
 import { TypedColors } from "../constants/TypedColors"
 import logo from "./logo.gif"
 
-export const Header = () => {
+export const Header = (): JSX.Element => {
   const isDarkMode = useColorScheme() === "dark"
   const { vh } = useViewportUnits()
   const bounce = useBounceAnimation()

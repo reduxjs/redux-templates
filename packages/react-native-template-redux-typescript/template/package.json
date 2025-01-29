@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "build": "react-native bundle --entry-file index.js --bundle-output build/bundle.js --platform android",
+    "build": "react-native bundle --entry-file index.js --bundle-output build/bundle.js --platform android --assets-dest build/assets",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "ios": "react-native run-ios",
