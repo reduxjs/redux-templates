@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import styles from "./Counter.module.css"
@@ -11,7 +12,7 @@ import {
   selectStatus,
 } from "./counterSlice"
 
-export const Counter = () => {
+export const Counter = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const count = useAppSelector(selectCount)
   const status = useAppSelector(selectStatus)
