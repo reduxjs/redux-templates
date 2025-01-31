@@ -9,7 +9,7 @@
   "parserOptions": { "project": true, "tsconfigRootDir": "./" },
   "plugins": ["@typescript-eslint"],
   "root": true,
-  "ignorePatterns": ["dist"],
+  "ignorePatterns": ["dist", "vite.config.ts"],
   "rules": {
     "@typescript-eslint/consistent-type-imports": [
       2,
