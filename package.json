@@ -22,12 +22,12 @@
     "build": "yarn workspaces foreach -A run build"
   },
   "devDependencies": {
-    "@types/node": "^22.13.0",
-    "eslint": "^9.19.0",
-    "prettier": "^3.4.2",
+    "@types/node": "^22.13.10",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   },
   "packageManager": "yarn@4.6.0"
 }

@@ -1,5 +1,5 @@
 import js from "@eslint/js"
-import prettierConfig from "eslint-config-prettier"
+import prettierConfig from "eslint-config-prettier/flat"
 import jestPlugin from "eslint-plugin-jest"
 import reactPlugin from "eslint-plugin-react"
 import reactHooksPlugin from "eslint-plugin-react-hooks"
@@ -7,15 +7,40 @@ import globals from "globals"
 import { config, configs } from "typescript-eslint"
 
 export default config(
-  { name: "global-ignores", ignores: ["**/*.snap", "build", "coverage"] },
-  { name: js.meta.name, ...js.configs.recommended },
+  {
+    name: "global-ignores",
+    ignores: [
+      "**/*.snap",
+      "**/dist/",
+      "**/.yalc/",
+      "**/build/",
+      "**/temp/",
+      "**/.temp/",
+      "**/.tmp/",
+      "**/.yarn/",
+      "**/coverage/",
+    ],
+  },
+  {
+    name: `${js.meta.name}/recommended`,
+    ...js.configs.recommended,
+  },
   configs.strictTypeChecked,
   configs.stylisticTypeChecked,
-  { name: jestPlugin.meta.name, ...jestPlugin.configs["flat/recommended"] },
   {
+    name: `${jestPlugin.meta.name}/recommended`,
+    ...jestPlugin.configs["flat/recommended"],
+  },
+  {
+    name: "eslint-plugin-react/jsx-runtime",
     ...reactPlugin.configs.flat["jsx-runtime"],
+  },
+  reactHooksPlugin.configs["recommended-latest"],
+  {
     name: "main",
-    linterOptions: { reportUnusedDisableDirectives: 2 },
+    linterOptions: {
+      reportUnusedDisableDirectives: 2,
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -26,13 +51,7 @@ export default config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    plugins: {
-      "react-hooks": reactHooksPlugin,
-      react: reactPlugin,
-      jest: jestPlugin,
-    },
     rules: {
-      ...reactHooksPlugin.configs.recommended.rules,
       "no-restricted-imports": [
         2,
         {
@@ -57,5 +76,6 @@ export default config(
       ],
     },
   },
-  { name: "prettier-config", ...prettierConfig },
+
+  prettierConfig,
 )

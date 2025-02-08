@@ -1,21 +1,46 @@
 import js from "@eslint/js"
 import vitestPlugin from "@vitest/eslint-plugin"
-import prettierConfig from "eslint-config-prettier"
+import prettierConfig from "eslint-config-prettier/flat"
 import reactPlugin from "eslint-plugin-react"
 import reactHooksPlugin from "eslint-plugin-react-hooks"
 import globals from "globals"
 import { config, configs } from "typescript-eslint"
 
 const ESLintConfig = config(
-  { name: "global-ignores", ignores: ["**/*.snap", "dist", "coverage"] },
-  { name: js.meta.name, ...js.configs.recommended },
+  {
+    name: "global-ignores",
+    ignores: [
+      "**/*.snap",
+      "**/dist/",
+      "**/.yalc/",
+      "**/build/",
+      "**/temp/",
+      "**/.temp/",
+      "**/.tmp/",
+      "**/.yarn/",
+      "**/coverage/",
+    ],
+  },
+  {
+    name: `${js.meta.name}/recommended`,
+    ...js.configs.recommended,
+  },
   configs.strictTypeChecked,
   configs.stylisticTypeChecked,
-  { name: vitestPlugin.meta.name, ...vitestPlugin.configs.recommended },
   {
+    name: `${vitestPlugin.meta.name}/recommended`,
+    ...vitestPlugin.configs.recommended,
+  },
+  {
+    name: "eslint-plugin-react/jsx-runtime",
     ...reactPlugin.configs.flat["jsx-runtime"],
+  },
+  reactHooksPlugin.configs["recommended-latest"],
+  {
     name: "main",
-    linterOptions: { reportUnusedDisableDirectives: 2 },
+    linterOptions: {
+      reportUnusedDisableDirectives: 2,
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -24,14 +49,12 @@ const ESLintConfig = config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    plugins: {
-      "react-hooks": reactHooksPlugin,
-      react: reactPlugin,
-      vitest: vitestPlugin,
+    settings: {
+      vitest: {
+        typecheck: true,
+      },
     },
-    settings: { vitest: { typecheck: true } },
     rules: {
-      ...reactHooksPlugin.configs.recommended.rules,
       "@typescript-eslint/consistent-type-definitions": [2, "type"],
       "@typescript-eslint/consistent-type-imports": [
         2,
@@ -56,7 +79,8 @@ const ESLintConfig = config(
       ],
     },
   },
-  { name: "prettier-config", ...prettierConfig },
+
+  prettierConfig,
 )
 
 export default ESLintConfig

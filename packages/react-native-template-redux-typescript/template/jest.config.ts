@@ -19,10 +19,15 @@ const config: Config = {
    */
   globals: {
     window: undefined,
-    navigator: { product: "ReactNative" },
+    navigator: {
+      product: "ReactNative",
+    },
   },
   setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
-  fakeTimers: { enableGlobally: true },
+  fakeTimers: {
+    enableGlobally: true,
+    advanceTimers: true,
+  },
 }
 
 export default config
