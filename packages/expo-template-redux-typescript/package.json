@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "android": "expo start --android",
-    "build": "expo prebuild -p android && react-native bundle --entry-file index.ts --bundle-output build/bundle.js --platform android",
+    "build": "expo prebuild -p android && react-native bundle --entry-file index.ts --bundle-output build/bundle.js --platform android --assets-dest build/assets",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "ios": "expo start --ios",
