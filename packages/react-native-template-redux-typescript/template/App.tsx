@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import {
   SafeAreaView,
   ScrollView,
@@ -7,8 +8,6 @@ import {
   View,
   useColorScheme,
 } from "react-native"
-import { Counter } from "./src/features/counter/Counter"
-
 import {
   DebugInstructions,
   HermesBadge,
@@ -19,9 +18,10 @@ import { Header } from "./src/components/Header"
 import { LearnReduxLinks } from "./src/components/LearnReduxLinks"
 import { Section } from "./src/components/Section"
 import { TypedColors } from "./src/constants/TypedColors"
+import { Counter } from "./src/features/counter/Counter"
 import { Quotes } from "./src/features/quotes/Quotes"
 
-export const App = () => {
+export const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === "dark"
 
   const backgroundStyle = {

@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { useState } from "react"
 import {
   Modal,
@@ -8,18 +9,18 @@ import {
   View,
   useColorScheme,
 } from "react-native"
-import { TypedColors } from "../../constants/TypedColors"
+import { Colors } from "../../constants/Colors"
 import { useGetQuotesQuery } from "./quotesApiSlice"
 
 const options = [5, 10, 20, 30]
 
-export const Quotes = () => {
+export const Quotes = (): JSX.Element | null => {
   const isDarkMode = useColorScheme() === "dark"
   const textStyle = {
-    color: isDarkMode ? TypedColors.light : TypedColors.dark,
+    color: isDarkMode ? Colors.light : Colors.dark,
   }
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? TypedColors.darker : TypedColors.lighter,
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   }
 
   const [numberOfQuotes, setNumberOfQuotes] = useState(10)

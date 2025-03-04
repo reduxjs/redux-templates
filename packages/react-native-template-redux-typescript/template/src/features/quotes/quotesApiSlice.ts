@@ -1,13 +1,13 @@
 // Need to use the React-specific entry point to import `createApi`
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-interface Quote {
+type Quote = {
   id: number
   quote: string
   author: string
 }
 
-interface QuotesApiResponse {
+type QuotesApiResponse = {
   quotes: Quote[]
   total: number
   skip: number
@@ -28,7 +28,7 @@ export const quotesApiSlice = createApi({
       query: (limit = 10) => `?limit=${limit}`,
       // `providesTags` determines which 'tag' is attached to the
       // cached data returned by the query.
-      providesTags: (result, error, id) => [{ type: "Quotes", id }],
+      providesTags: (_result, _error, id) => [{ type: "Quotes", id }],
     }),
   }),
 })

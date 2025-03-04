@@ -11,7 +11,7 @@ import { makeStore } from "../app/store"
  * additional configuration such as specifying an initial Redux state and
  * a custom store instance.
  */
-interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
+type ExtendedRenderOptions = Omit<RenderOptions, "queries"> & {
   /**
    * Defines a specific portion or the entire initial state for the Redux store.
    * This is particularly useful for initializing the state in a

@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { useState } from "react"
 import {
   Modal,
@@ -13,7 +14,7 @@ import { useGetQuotesQuery } from "./quotesApiSlice"
 
 const options = [5, 10, 20, 30]
 
-export const Quotes = () => {
+export const Quotes = (): JSX.Element | null => {
   const isDarkMode = useColorScheme() === "dark"
   const textStyle = {
     color: isDarkMode ? TypedColors.light : TypedColors.dark,

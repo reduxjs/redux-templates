@@ -1,11 +1,9 @@
 // This file demonstrates typical usage of Redux Toolkit's createSlice function
 // for defining reducer logic and actions, as well as related thunks and selectors.
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import type { AppThunk, RootState } from "@/app/store"
 import type { PayloadAction } from "@reduxjs/toolkit"
-
-import type { RootState, AppThunk } from "@/app/store"
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { fetchCount } from "./counterAPI"
 
 // Define the TS type for the counter slice's state

@@ -1,0 +1,63 @@
+name: CI
+
+on: [push, pull_request, workflow_dispatch]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    name: Test and lint ${{ matrix.packages }} on Node.js ${{ matrix.node }} and ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22.x]
+        os: [ubuntu-latest, windows-latest]
+        packages:
+          [
+            "cra-template-redux",
+            "cra-template-redux-typescript",
+            "expo-template-redux-typescript",
+            "react-native-template-redux-typescript",
+            "vite-template-redux",
+          ]
+
+    steps:
+      - name: Checkout repository for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Checkout repository for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node }} for ${{ matrix.packages }} on ${{ matrix.os }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+
+      - name: Set up environment variables for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: echo "TEMP=$USERPROFILE\AppData\Local\Temp" >> $GITHUB_ENV
+
+      - name: Set up JDK for React Native build for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        if: matrix.packages == 'react-native-template-redux-typescript' || matrix.packages == 'expo-template-redux-typescript'
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21.x"
+          distribution: "temurin"
+          cache: "gradle"
+
+      - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+        run: npx -y tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
+
+      - name: Did we fail?
+        if: failure()
+        working-directory: packages/${{ matrix.packages }}
+        run: ls -R

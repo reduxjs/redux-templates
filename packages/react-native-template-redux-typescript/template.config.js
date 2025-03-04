@@ -1,5 +1,5 @@
 /**
- * Configuration settings for a template.
+ * Configuration settings for a React-Native template.
  *
  * @typedef {Object} TemplateConfig
  * @property {string} placeholderName A unique identifier or name for the placeholder within the template.
@@ -11,7 +11,10 @@
 /**
  * @type TemplateConfig
  */
-module.exports = {
-  placeholderName: "RNTemplate",
+const templateConfig = {
+  placeholderName: "ReactNativeReduxTemplate",
   templateDir: "./template",
-};
+  titlePlaceholder: "react-native-template",
+}
+
+module.exports = templateConfig

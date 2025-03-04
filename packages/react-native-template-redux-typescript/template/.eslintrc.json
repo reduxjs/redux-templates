@@ -10,9 +10,14 @@
   "plugins": ["@typescript-eslint"],
   "root": true,
   "rules": {
+    "@typescript-eslint/consistent-type-definitions": [2, "type"],
     "@typescript-eslint/consistent-type-imports": [
       2,
-      { "fixStyle": "separate-type-imports" }
+      {
+        "prefer": "type-imports",
+        "fixStyle": "separate-type-imports",
+        "disallowTypeAnnotations": true
+      }
     ],
     "@typescript-eslint/no-restricted-imports": [
       2,
@@ -29,6 +34,11 @@
   },
   "overrides": [
     { "files": ["*.{c,m,}{t,j}s", "*.{t,j}sx"] },
-    { "files": ["*{test,spec}.{t,j}s?(x)"], "env": { "jest": true } }
+    {
+      "env": { "jest": true },
+      "extends": ["plugin:jest/recommended"],
+      "files": ["*{test,spec}.{t,j}s?(x)"],
+      "plugins": ["jest"]
+    }
   ]
 }

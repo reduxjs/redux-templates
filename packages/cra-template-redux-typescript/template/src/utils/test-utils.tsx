@@ -1,6 +1,7 @@
 import type { RenderOptions } from "@testing-library/react"
 import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
+import type { Options } from "@testing-library/user-event"
+import { userEvent } from "@testing-library/user-event"
 import type { PropsWithChildren, ReactElement } from "react"
 import { Provider } from "react-redux"
 import type { AppStore, RootState } from "../app/store"
@@ -12,7 +13,7 @@ import { makeStore } from "../app/store"
  * additional configuration such as specifying an initial Redux state and
  * a custom store instance.
  */
-interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
+type ExtendedRenderOptions = Omit<RenderOptions, "queries"> & {
   /**
    * Defines a specific portion or the entire initial state for the Redux store.
    * This is particularly useful for initializing the state in a
@@ -31,6 +32,11 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
    * @default makeStore(preloadedState)
    */
   store?: AppStore
+
+  /**
+   * {@linkcode Options} to be passed to the {@linkcode userEvent} API.
+   */
+  userEventOptions?: Options
 }
 
 /**
@@ -49,6 +55,7 @@ export const renderWithProviders = (
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
     store = makeStore(preloadedState),
+    userEventOptions,
     ...renderOptions
   } = extendedRenderOptions
 
@@ -59,7 +66,7 @@ export const renderWithProviders = (
   // Return an object with the store and all of RTL's query functions
   return {
     store,
-    user: userEvent.setup(),
+    user: userEvent.setup(userEventOptions),
     ...render(ui, { wrapper: Wrapper, ...renderOptions }),
   }
 }
