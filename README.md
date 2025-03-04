@@ -11,3 +11,4 @@ Currently, this repo contains these templates:
 - `cra-template-redux`: Create-React-App, with JavaScript
 - `expo-template-redux`: Expo, with TypeScript
 - `rtk-app-structure-example`: A standalone example of a Redux Toolkit
+- `react-native-template-redux-typescript`: React Native, with TypeScript
