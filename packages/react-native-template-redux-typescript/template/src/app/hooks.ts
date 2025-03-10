@@ -3,7 +3,7 @@
 // usage of typed hooks throughout the application.
 // We disable the ESLint rule here because this is the designated place
 // for importing and re-exporting the typed versions of hooks.
-/* eslint-disable @typescript-eslint/no-restricted-imports */
+/* eslint-disable no-restricted-imports */
 import { useEffect, useRef } from "react"
 import { Animated, useWindowDimensions } from "react-native"
 import { useDispatch, useSelector } from "react-redux"

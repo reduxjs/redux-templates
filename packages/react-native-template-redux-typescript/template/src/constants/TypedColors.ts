@@ -10,4 +10,4 @@ type AllColors = {
   black: string
 }
 
-export const TypedColors: AllColors = Colors
+export const TypedColors: AllColors = Colors satisfies AllColors as AllColors
