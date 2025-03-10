@@ -6,7 +6,7 @@ import reactHooksPlugin from "eslint-plugin-react-hooks"
 import globals from "globals"
 import { config, configs } from "typescript-eslint"
 
-export default config(
+const eslintConfig = config(
   {
     name: "global-ignores",
     ignores: [
@@ -52,6 +52,7 @@ export default config(
       },
     },
     rules: {
+      "no-undef": [0],
       "no-restricted-imports": [
         2,
         {
@@ -79,3 +80,5 @@ export default config(
 
   prettierConfig,
 )
+
+export default eslintConfig

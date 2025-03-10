@@ -6,7 +6,7 @@ import reactHooksPlugin from "eslint-plugin-react-hooks"
 import globals from "globals"
 import { config, configs } from "typescript-eslint"
 
-const ESLintConfig = config(
+const eslintConfig = config(
   {
     name: "global-ignores",
     ignores: [
@@ -55,6 +55,7 @@ const ESLintConfig = config(
       },
     },
     rules: {
+      "no-undef": [0],
       "@typescript-eslint/consistent-type-definitions": [2, "type"],
       "@typescript-eslint/consistent-type-imports": [
         2,
@@ -64,7 +65,7 @@ const ESLintConfig = config(
           disallowTypeAnnotations: true,
         },
       ],
-      "@typescript-eslint/no-restricted-imports": [
+      "no-restricted-imports": [
         2,
         {
           paths: [
@@ -83,4 +84,4 @@ const ESLintConfig = config(
   prettierConfig,
 )
 
-export default ESLintConfig
+export default eslintConfig
