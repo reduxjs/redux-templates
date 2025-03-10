@@ -75,7 +75,7 @@ export const Counter = (): JSX.Element => {
             style={styles.button}
             disabled={status !== "idle"}
             onPress={() => {
-              dispatch(incrementAsync(incrementValue))
+              void dispatch(incrementAsync(incrementValue))
             }}
           >
             <Text style={styles.buttonText}>Add Async</Text>

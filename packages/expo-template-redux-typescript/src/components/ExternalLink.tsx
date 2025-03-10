@@ -25,7 +25,9 @@ export const ExternalLink = ({
     <TouchableOpacity
       {...touchableOpacityProps}
       accessibilityRole="button"
-      onPress={onPress}
+      onPress={() => {
+        void onPress()
+      }}
     />
   )
 }
