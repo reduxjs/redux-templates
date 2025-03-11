@@ -77,3 +77,6 @@ yarn-error.log
 
 #IDE
 .vscode
+
+.yalc/
+yalc.lock

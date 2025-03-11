@@ -70,3 +70,6 @@ template/yarn.lock
 
 #IDE
 .vscode
+
+.yalc/
+yalc.lock
