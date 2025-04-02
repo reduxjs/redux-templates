@@ -2,6 +2,7 @@ import type { Config } from "jest"
 
 const config: Config = {
   preset: "react-native",
+  verbose: true,
   /**
    * Without this we will get the following error:
    * `SyntaxError: Cannot use import statement outside a module`
