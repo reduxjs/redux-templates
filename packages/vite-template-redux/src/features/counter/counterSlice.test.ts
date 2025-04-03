@@ -1,6 +1,6 @@
 import type { AppStore } from "../../app/store"
 import { makeStore } from "../../app/store"
-import type { CounterSliceState } from "./counterSlice"
+import type { CounterState } from "./counterSlice"
 import {
   counterSlice,
   decrement,
@@ -15,7 +15,7 @@ type LocalTestContext = {
 
 describe("counter reducer", () => {
   beforeEach<LocalTestContext>(context => {
-    const initialState: CounterSliceState = {
+    const initialState: CounterState = {
       value: 3,
       status: "idle",
     }
