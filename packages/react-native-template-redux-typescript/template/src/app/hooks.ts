@@ -4,8 +4,8 @@
 // We disable the ESLint rule here because this is the designated place
 // for importing and re-exporting the typed versions of hooks.
 /* eslint-disable no-restricted-imports */
-import { useEffect, useRef } from "react"
-import { Animated, useWindowDimensions } from "react-native"
+import { useEffect } from "react"
+import { Animated, useAnimatedValue, useWindowDimensions } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import type { AppDispatch, RootState } from "./store"
 
@@ -32,10 +32,10 @@ export const useViewportUnits = (): { vh: number; vw: number } => {
  * Custom React hook for creating a bounce animation effect.
  *
  * @param value - The maximum height to which the object should bounce. Defaults to 10 if not provided.
- * @returns The `Animated.Value` object that can be used to drive animations.
+ * @returns The {@linkcode Animated.Value} object that can be used to drive animations.
  */
 export const useBounceAnimation = (value = 10): Animated.Value => {
-  const bounce = useRef(new Animated.Value(0)).current
+  const bounce = useAnimatedValue(0)
 
   bounce.interpolate({
     inputRange: [-300, -100, 0, 100, 101],
