@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
+import { userEvent } from "@testing-library/user-event"
 import { Provider } from "react-redux"
 import { makeStore } from "../app/store"
 
@@ -16,6 +16,7 @@ export const renderWithProviders = (ui, extendedRenderOptions = {}) => {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
     store = makeStore(preloadedState),
+    userEventOptions,
     ...renderOptions
   } = extendedRenderOptions
 
@@ -26,7 +27,7 @@ export const renderWithProviders = (ui, extendedRenderOptions = {}) => {
   // Return an object with the store and all of RTL's query functions
   return {
     store,
-    user: userEvent.setup(),
+    user: userEvent.setup(userEventOptions),
     ...render(ui, { wrapper: Wrapper, ...renderOptions }),
   }
 }

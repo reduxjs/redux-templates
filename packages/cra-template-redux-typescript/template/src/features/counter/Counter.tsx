@@ -1,5 +1,5 @@
+import type { JSX } from "react"
 import { useState } from "react"
-
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import styles from "./Counter.module.css"
 import {
@@ -12,7 +12,7 @@ import {
   selectStatus,
 } from "./counterSlice"
 
-export const Counter = () => {
+export const Counter = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const count = useAppSelector(selectCount)
   const status = useAppSelector(selectStatus)
@@ -30,9 +30,9 @@ export const Counter = () => {
         >
           -
         </button>
-        <span aria-label="Count" className={styles.value}>
+        <label aria-label="Count" className={styles.value}>
           {count}
-        </span>
+        </label>
         <button
           className={styles.button}
           aria-label="Increment value"
@@ -60,7 +60,9 @@ export const Counter = () => {
         <button
           className={styles.asyncButton}
           disabled={status !== "idle"}
-          onClick={() => dispatch(incrementAsync(incrementValue))}
+          onClick={() => {
+            void dispatch(incrementAsync(incrementValue))
+          }}
         >
           Add Async
         </button>

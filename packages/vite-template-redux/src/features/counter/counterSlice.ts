@@ -3,7 +3,7 @@ import { createAppSlice } from "../../app/createAppSlice"
 import type { AppThunk } from "../../app/store"
 import { fetchCount } from "./counterAPI"
 
-export interface CounterSliceState {
+export type CounterSliceState = {
   value: number
   status: "idle" | "loading" | "failed"
 }

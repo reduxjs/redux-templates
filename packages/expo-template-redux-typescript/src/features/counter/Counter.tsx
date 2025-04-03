@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { useState } from "react"
 import {
   StyleSheet,
@@ -9,7 +10,7 @@ import {
 } from "react-native"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { AsyncButton } from "../../components/AsyncButton"
-import { TypedColors } from "../../constants/TypedColors"
+import { Colors } from "../../constants/Colors"
 import {
   decrement,
   increment,
@@ -20,10 +21,10 @@ import {
   selectStatus,
 } from "./counterSlice"
 
-export const Counter = () => {
+export const Counter = (): JSX.Element => {
   const isDarkMode = useColorScheme() === "dark"
   const textStyle = {
-    color: isDarkMode ? TypedColors.light : TypedColors.dark,
+    color: isDarkMode ? Colors.light : Colors.dark,
   }
 
   const dispatch = useAppDispatch()
@@ -58,7 +59,7 @@ export const Counter = () => {
         <TextInput
           aria-label="Set increment amount"
           style={[styles.textbox, textStyle]}
-          value={`${incrementAmount}`}
+          value={incrementAmount}
           keyboardType="numeric"
           onChangeText={setIncrementAmount}
         />
@@ -74,7 +75,7 @@ export const Counter = () => {
             style={styles.button}
             disabled={status !== "idle"}
             onPress={() => {
-              dispatch(incrementAsync(incrementValue))
+              void dispatch(incrementAsync(incrementValue))
             }}
           >
             <Text style={styles.buttonText}>Add Async</Text>

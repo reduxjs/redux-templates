@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from "react"
+import type { JSX, PropsWithChildren } from "react"
 import { StyleSheet, Text, View, useColorScheme } from "react-native"
 import { TypedColors } from "../constants/TypedColors"
 
@@ -6,7 +6,7 @@ type SectionProps = PropsWithChildren<{
   title: string
 }>
 
-export const Section = ({ children, title }: SectionProps) => {
+export const Section = ({ children, title }: SectionProps): JSX.Element => {
   const isDarkMode = useColorScheme() === "dark"
 
   return (

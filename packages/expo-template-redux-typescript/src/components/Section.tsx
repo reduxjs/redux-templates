@@ -1,12 +1,12 @@
-import type { PropsWithChildren } from "react"
+import type { JSX, PropsWithChildren } from "react"
 import { StyleSheet, Text, View, useColorScheme } from "react-native"
-import { TypedColors } from "../constants/TypedColors"
+import { Colors } from "../constants/Colors"
 
 type SectionProps = PropsWithChildren<{
   title: string
 }>
 
-export const Section = ({ children, title }: SectionProps) => {
+export const Section = ({ children, title }: SectionProps): JSX.Element => {
   const isDarkMode = useColorScheme() === "dark"
 
   return (
@@ -14,7 +14,7 @@ export const Section = ({ children, title }: SectionProps) => {
       <Text
         style={[
           styles.sectionTitle,
-          { color: isDarkMode ? TypedColors.white : TypedColors.black },
+          { color: isDarkMode ? Colors.white : Colors.black },
         ]}
       >
         {title}
@@ -22,7 +22,7 @@ export const Section = ({ children, title }: SectionProps) => {
       <Text
         style={[
           styles.sectionDescription,
-          { color: isDarkMode ? TypedColors.light : TypedColors.dark },
+          { color: isDarkMode ? Colors.light : Colors.dark },
         ]}
       >
         {children}

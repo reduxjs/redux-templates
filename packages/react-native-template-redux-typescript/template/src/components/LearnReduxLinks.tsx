@@ -1,3 +1,4 @@
+import type { JSX } from "react"
 import { Fragment } from "react"
 import {
   StyleSheet,
@@ -9,7 +10,7 @@ import {
 import openURLInBrowser from "react-native/Libraries/Core/Devtools/openURLInBrowser"
 import { TypedColors } from "../constants/TypedColors"
 
-interface Link {
+type Link = {
   title: string
   link: string
   description: string
@@ -44,7 +45,7 @@ const links: Link[] = [
   },
 ]
 
-export const LearnReduxLinks = () => {
+export const LearnReduxLinks = (): JSX.Element => {
   const isDarkMode = useColorScheme() === "dark"
 
   return (
@@ -63,7 +64,7 @@ export const LearnReduxLinks = () => {
               ]}
             />
             <TouchableOpacity
-              accessibilityRole={"button"}
+              accessibilityRole="button"
               onPress={() => {
                 openURLInBrowser(item.link)
               }}

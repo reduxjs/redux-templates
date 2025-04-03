@@ -3,6 +3,8 @@ import { useState } from "react"
 // Use pre-typed versions of the React-Redux
 // `useDispatch` and `useSelector` hooks
 import { useAppDispatch, useAppSelector } from "@/app/hooks"
+import type { JSX } from "react"
+import styles from "./Counter.module.css"
 import {
   decrement,
   increment,
@@ -13,9 +15,7 @@ import {
   selectStatus,
 } from "./counterSlice"
 
-import styles from "./Counter.module.css"
-
-export const Counter = () => {
+export const Counter = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const count = useAppSelector(selectCount)
   const status = useAppSelector(selectStatus)

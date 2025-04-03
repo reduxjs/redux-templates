@@ -7,6 +7,8 @@ node_modules/
 .expo/
 dist/
 web-build/
+expo-env.d.ts
+build/
 
 # Native
 *.orig.*
@@ -34,5 +36,19 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# testing
+/coverage
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # IDE
 .vscode
+
+.yalc/
+yalc.lock

@@ -1,11 +1,16 @@
-import type { PropsWithChildren } from "react"
-import { useRef } from "react"
+import type { JSX, PropsWithChildren } from "react"
 import type {
   GestureResponderEvent,
   PressableProps,
   ViewStyle,
 } from "react-native"
-import { Animated, Pressable, StyleSheet, View } from "react-native"
+import {
+  Animated,
+  Pressable,
+  StyleSheet,
+  View,
+  useAnimatedValue,
+} from "react-native"
 
 type AsyncButtonProps = PressableProps & PropsWithChildren
 
@@ -14,9 +19,9 @@ export const AsyncButton = ({
   style,
   children,
   ...restProps
-}: AsyncButtonProps) => {
-  const progress = useRef(new Animated.Value(0)).current
-  const opacity = useRef(new Animated.Value(1)).current
+}: AsyncButtonProps): JSX.Element => {
+  const progress = useAnimatedValue(0)
+  const opacity = useAnimatedValue(1)
 
   const _onPress = (e: GestureResponderEvent) => {
     progress.setValue(0)

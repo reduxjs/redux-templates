@@ -1,0 +1,38 @@
+{
+  "name": "redux-templates",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/reduxjs/redux-templates#readme",
+  "bugs": {
+    "url": "https://github.com/reduxjs/redux-templates/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reduxjs/redux-templates.git",
+    "directory": "."
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "format": "prettier --config=$INIT_CWD/prettier.config.mjs --write $INIT_CWD",
+    "format-check": "prettier --config=$INIT_CWD/prettier.config.mjs --check $INIT_CWD",
+    "lint": "eslint --config=$INIT_CWD/eslint.config.mts $INIT_CWD",
+    "lint-fix": "eslint --config=$INIT_CWD/eslint.config.mts $INIT_CWD --fix",
+    "type-check": "tsc -p $INIT_CWD/tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@types/node": "^22.14.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "jiti": "^2.4.2",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.29.0"
+  },
+  "packageManager": "yarn@4.8.1"
+}
