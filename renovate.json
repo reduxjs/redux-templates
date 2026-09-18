@@ -1,0 +1,62 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":disableDependencyDashboard"],
+  "schedule": ["before 6am on the first day of the month"],
+  "timezone": "America/New_York",
+  "rangeStrategy": "bump",
+  "prConcurrentLimit": 5,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on the first day of the month"]
+  },
+  "packageRules": [
+    {
+      "description": "Default: everything in one monthly PR. Later rules pull packages out into their own groups.",
+      "groupName": "Other dependencies",
+      "matchPackageNames": ["*"]
+    },
+    {
+      "description": "Expo SDK and React Native move together; keep them in one PR",
+      "groupName": "Expo SDK",
+      "matchPackageNames": [
+        "expo",
+        "expo-**",
+        "@expo/**",
+        "react-native",
+        "@react-native/**",
+        "react-native-**",
+        "jest-expo",
+        "babel-preset-expo"
+      ]
+    },
+    {
+      "description": "Redux packages together",
+      "groupName": "Redux",
+      "matchPackageNames": [
+        "@reduxjs/toolkit",
+        "react-redux",
+        "redux",
+        "reselect"
+      ]
+    },
+    {
+      "description": "Build, test, lint, and format tooling together",
+      "groupName": "Tooling",
+      "matchPackageNames": [
+        "vite",
+        "@vitejs/**",
+        "vitest",
+        "@vitest/**",
+        "eslint",
+        "@eslint/**",
+        "eslint-**",
+        "typescript-eslint",
+        "prettier",
+        "typescript",
+        "jsdom",
+        "tsx",
+        "jiti"
+      ]
+    }
+  ]
+}

@@ -4,6 +4,8 @@ This slimmed-down version of [the Redux Toolkit template for Vite](https://githu
 
 It's used in the ["Redux Essentials" tutorial Part 2](https://redux.js.org/tutorials/essentials/part-2-app-structure) as an embeddable CodeSandbox to help teach Redux app structure.
 
+[Open in StackBlitz](https://stackblitz.com/github/reduxjs/redux-templates/tree/master/packages/rtk-app-structure-example)
+
 ## Scripts
 
 - `dev`/`start` - start dev server and open browser
