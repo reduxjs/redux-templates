@@ -1,9 +1,9 @@
 import js from "@eslint/js"
+import { defineConfig } from "eslint/config"
 import prettierConfig from "eslint-config-prettier/flat"
-import type { ConfigArray } from "typescript-eslint"
-import { config, configs } from "typescript-eslint"
+import { configs } from "typescript-eslint"
 
-const eslintConfig: ConfigArray = config(
+const eslintConfig = defineConfig(
   {
     name: "global-ignores",
     ignores: [

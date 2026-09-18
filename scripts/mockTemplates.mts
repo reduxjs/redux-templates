@@ -13,122 +13,110 @@ const homeOrTempDir = os.tmpdir() || os.homedir()
 
 const testDirectory = path.join(homeOrTempDir, "test-redux-templates")
 
+const repoRoot = path.join(import.meta.dirname, "..")
+
 /**
- * Retrieves a map of Yarn workspaces and their corresponding locations.
+ * Retrieves a map of pnpm workspace packages and their corresponding locations.
  *
- * @returns A {@linkcode Promise | promise} that resolves to a map of workspace names and their locations.
- * @throws An error If there is an error while listing Yarn workspaces.
+ * @returns A {@linkcode Promise | promise} that resolves to a map of package names and their absolute paths.
+ * @throws An error If there is an error while listing the workspace packages.
  */
-const listYarnWorkspaces = async () => {
-  // Execute `yarn workspaces list --json` command
-  const { stdout } = await execFile("yarn", ["workspaces", "list", "--json"], {
-    shell: true,
-  })
-
-  // The output includes multiple JSON lines, one for each workspace.
-  // Split stdout by newlines and filter out empty lines or lines that are not JSON (like yarn logs)
-  const workspaces = stdout
-    .trim()
-    .split("\n")
-    .filter(line => {
-      try {
-        JSON.parse(line)
-        return true
-      } catch (error) {
-        console.error(error)
-        return false
-      }
-    })
-    .map(line => JSON.parse(line) as { location: string; name: string })
-    .filter(({ location }) => location !== ".")
-
-  // Extract workspace names or any other property you need
-  const workspaceNames = new Map(
-    workspaces.map(workspace => [
-      workspace.name,
-      path.join(import.meta.dirname, "..", workspace.location),
-    ]),
+const listWorkspaces = async () => {
+  const { stdout } = await execFile(
+    "pnpm",
+    ["-r", "ls", "--json", "--depth", "-1"],
+    { shell: true, cwd: repoRoot },
   )
 
-  return workspaceNames
+  const packages = JSON.parse(stdout) as { name: string; path: string }[]
+
+  return new Map(
+    packages
+      .filter(({ path: packagePath }) => packagePath !== repoRoot)
+      .map(({ name, path: packagePath }) => [name, packagePath]),
+  )
 }
 
-const workspaces = await listYarnWorkspaces()
+const workspaces = await listWorkspaces()
+
+const getWorkspacePath = (name: string) => {
+  const workspacePath = workspaces.get(name)
+
+  if (!workspacePath) {
+    throw new Error(`Unknown workspace package: ${name}`)
+  }
+
+  return workspacePath
+}
 
 /**
- * Constructs a GitHub URL based on the current Git repository information.
- *
- * @returns An object containing the remote URL, current branch, and commit hash.
- * @throws An error If there is an error while retrieving the Git repository information.
+ * Copies a template folder into the `example` directory, mirroring what
+ * `tiged` produces when it downloads the folder from GitHub.
  */
-async function constructGitHubUrl(): Promise<{
-  remoteUrl: string
-  currentBranch: string
-  commitHash: string
-}> {
-  const remoteUrl = (
-    await execFile("git", ["remote", "get-url", "origin"], { shell: true })
-  ).stdout.trim()
-
-  const currentBranch = (
-    await execFile("git", ["branch", "--show-current"], { shell: true })
-  ).stdout.trim()
-
-  const commitHash = (
-    await execFile("git", ["rev-parse", "--short", "HEAD"], { shell: true })
-  ).stdout.trim()
-
-  return {
-    remoteUrl,
-    currentBranch,
-    commitHash,
-  }
+const copyTemplate = async (name: string, destination: string) => {
+  await fs.cp(getWorkspacePath(name), destination, {
+    recursive: true,
+    filter: source => path.basename(source) !== "node_modules",
+  })
 }
 
-const gitHubUrl = await constructGitHubUrl()
+type TemplateSetup = (tempDirectory: string) => Promise<void>
 
-type AllTemplates = Record<
-  string,
-  {
-    command: string
-    args: string[]
-    options?: Partial<ExecFileOptionsWithStringEncoding>
-  }
->
+const runScaffold = async (
+  command: string,
+  args: string[],
+  cwd: string,
+  options?: Partial<ExecFileOptionsWithStringEncoding>,
+) => {
+  const { stdout, stderr } = await execFile(command, args, {
+    encoding: "utf-8",
+    shell: true,
+    cwd,
+    ...options,
+  })
 
-const allTemplates: AllTemplates = {
-  "expo-template-redux-typescript": {
-    command: "npx",
-    args: [
-      "-y",
-      "create-expo@latest",
-      "example",
-      "--template",
-      `file:${workspaces.get("expo-template-redux-typescript") ?? ""}`,
-    ],
-  },
-  "vite-template-redux": {
-    command: "npx",
-    args: [
-      "-y",
-      "tiged@rc",
-      "-Dv",
-      `${gitHubUrl.remoteUrl}/packages/vite-template-redux#${gitHubUrl.currentBranch}`,
-      "example",
-    ],
-  },
+  console.log(stdout.trim())
+
+  console.error(stderr)
 }
+
+const allTemplates = new Map<string, TemplateSetup>([
+  [
+    "expo-template-redux-typescript",
+    tempDirectory =>
+      runScaffold(
+        "npx",
+        [
+          "-y",
+          "create-expo@latest",
+          "example",
+          "--no-install",
+          "--template",
+          `file:${getWorkspacePath("expo-template-redux-typescript")}`,
+        ],
+        tempDirectory,
+      ),
+  ],
+  [
+    "vite-template-redux",
+    tempDirectory =>
+      copyTemplate("vite-template-redux", path.join(tempDirectory, "example")),
+  ],
+  [
+    "rtk-app-structure-example",
+    tempDirectory =>
+      copyTemplate(
+        "rtk-app-structure-example",
+        path.join(tempDirectory, "example"),
+      ),
+  ],
+])
 
 /**
  * @param templates - The name of the template to mock.
  * @returns A map of template names and their corresponding temporary directories.
  */
 const createTempDirectories = async (templates: string[]) => {
-  await fs.rm(path.join(os.homedir(), ".degit"), {
-    force: true,
-    recursive: true,
-  })
-
   return Object.fromEntries(
     await Promise.all(
       templates.map(async template => {
@@ -161,61 +149,25 @@ const mockTemplate = async (templates: string[]) => {
 
   await Promise.all(
     templates.map(async template => {
-      const { command, args } = allTemplates[template]
+      const setup = allTemplates.get(template)
+
+      if (!setup) {
+        throw new Error(
+          `Unknown template "${template}". Known templates: ${[...allTemplates.keys()].join(", ")}`,
+        )
+      }
 
       const tempDirectory = tempDirectories[template]
 
-      const { stdout, stderr } = await execFile(command, args, {
-        encoding: "utf-8",
-        shell: true,
-        cwd: tempDirectory,
-      })
-
-      console.log(stdout.trim())
-
-      console.error(stderr)
+      await setup(tempDirectory)
 
       const cwd = path.join(tempDirectory, "example")
 
-      const install = await execFile("npm", ["install"], {
-        encoding: "utf-8",
-        shell: true,
-        cwd,
-      })
+      await runScaffold("npm", ["install"], cwd)
 
-      console.log(install.stdout.trim())
-
-      console.error(install.stderr)
-
-      const test = await execFile("npm", ["run", "test"], {
-        encoding: "utf-8",
-        shell: true,
-        cwd,
-      })
-
-      console.log(test.stdout.trim())
-
-      console.error(test.stderr)
-
-      const lint = await execFile("npm", ["run", "lint"], {
-        encoding: "utf-8",
-        shell: true,
-        cwd,
-      })
-
-      console.log(lint.stdout.trim())
-
-      console.error(lint.stderr)
-
-      const build = await execFile("npm", ["run", "build"], {
-        encoding: "utf-8",
-        shell: true,
-        cwd,
-      })
-
-      console.log(build.stdout.trim())
-
-      console.error(build.stderr)
+      for (const script of ["test", "lint", "build"]) {
+        await runScaffold("npm", ["run", script, "--if-present"], cwd)
+      }
     }),
   )
 }
@@ -223,5 +175,5 @@ const mockTemplate = async (templates: string[]) => {
 const processArgs = process.argv.slice(2)
 
 await mockTemplate(
-  processArgs.length === 0 ? Object.keys(allTemplates) : processArgs,
+  processArgs.length === 0 ? [...allTemplates.keys()] : processArgs,
 )
