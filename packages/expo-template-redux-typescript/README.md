@@ -5,7 +5,14 @@ The official Redux+TS template for Expo.
 ## :arrow_forward: Usage
 
 ```sh
-npx create-expo my-app --template expo-template-redux-typescript
+npx tiged reduxjs/redux-templates/packages/expo-template-redux-typescript my-app
+```
+
+Then install dependencies in the new folder:
+
+```sh
+cd my-app
+npm install
 ```
 
 # Getting Started
