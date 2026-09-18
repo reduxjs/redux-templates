@@ -16,13 +16,7 @@ jobs:
         node: [22.x]
         os: [ubuntu-latest, windows-latest]
         packages:
-          [
-            "cra-template-redux",
-            "cra-template-redux-typescript",
-            "expo-template-redux-typescript",
-            "react-native-template-redux-typescript",
-            "vite-template-redux",
-          ]
+          ["expo-template-redux-typescript", "vite-template-redux"]
 
     steps:
       - name: Checkout repository for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
@@ -47,7 +41,7 @@ jobs:
         run: echo "TEMP=$USERPROFILE\AppData\Local\Temp" >> $GITHUB_ENV
 
       - name: Set up JDK for React Native build for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        if: matrix.packages == 'react-native-template-redux-typescript' || matrix.packages == 'expo-template-redux-typescript'
+        if: matrix.packages == 'expo-template-redux-typescript'
         uses: actions/setup-java@v4
         with:
           java-version: "21.x"

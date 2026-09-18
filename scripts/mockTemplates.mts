@@ -97,26 +97,6 @@ type AllTemplates = Record<
 >
 
 const allTemplates: AllTemplates = {
-  "cra-template-redux": {
-    command: "npx",
-    args: [
-      "-y",
-      "create-react-app@latest",
-      "example",
-      "--template",
-      `file:${workspaces.get("cra-template-redux") ?? ""}`,
-    ],
-  },
-  "cra-template-redux-typescript": {
-    command: "npx",
-    args: [
-      "-y",
-      "create-react-app@latest",
-      "example",
-      "--template",
-      `file:${workspaces.get("cra-template-redux-typescript") ?? ""}`,
-    ],
-  },
   "expo-template-redux-typescript": {
     command: "npx",
     args: [
@@ -125,20 +105,6 @@ const allTemplates: AllTemplates = {
       "example",
       "--template",
       `file:${workspaces.get("expo-template-redux-typescript") ?? ""}`,
-    ],
-  },
-  "react-native-template-redux-typescript": {
-    command: "npx",
-    args: [
-      "-y",
-      "@react-native-community/cli@latest",
-      "init",
-      "app",
-      "--template",
-      `file:${workspaces.get("react-native-template-redux-typescript") ?? ""}`,
-      "--pm=npm",
-      "--directory",
-      "example",
     ],
   },
   "vite-template-redux": {
