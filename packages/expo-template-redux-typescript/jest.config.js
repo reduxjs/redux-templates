@@ -1,8 +1,12 @@
-import type { Config } from "jest"
-
-const config: Config = {
+/** @type {import("jest").Config} */
+const config = {
   preset: "jest-expo",
   verbose: true,
+  /**
+   * The first render of the app on a cold Jest cache can take longer than the
+   * default 5 second timeout while React Native's modules are transformed.
+   */
+  testTimeout: 20000,
   /**
    * Without this we will get the following error:
    * `SyntaxError: Cannot use import statement outside a module`
@@ -31,4 +35,4 @@ const config: Config = {
   },
 }
 
-export default config
+module.exports = config

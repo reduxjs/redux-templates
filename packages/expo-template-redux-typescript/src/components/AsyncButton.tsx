@@ -23,7 +23,7 @@ export const AsyncButton = ({
   const progress = useAnimatedValue(0)
   const opacity = useAnimatedValue(1)
 
-  const _onPress = (e: GestureResponderEvent) => {
+  const handlePress = (e: GestureResponderEvent) => {
     progress.setValue(0)
     opacity.setValue(1)
 
@@ -58,7 +58,7 @@ export const AsyncButton = ({
   }
 
   return (
-    <Pressable style={style} onPress={_onPress} {...restProps}>
+    <Pressable style={style} onPress={handlePress} {...restProps}>
       <View style={StyleSheet.absoluteFill}>
         <Animated.View style={[styles.progress, progressStyle]} />
       </View>

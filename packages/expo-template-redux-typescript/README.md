@@ -2,7 +2,7 @@
 
 The official Redux+TS template for Expo.
 
-## :arrow_forward: Usage
+## Usage
 
 ```sh
 npx tiged reduxjs/redux-templates/packages/expo-template-redux-typescript my-app
@@ -15,67 +15,35 @@ cd my-app
 npm install
 ```
 
-# Getting Started
+## Running the app
 
-> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Start the Expo dev server:
 
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
+```sh
 npm start
 ```
 
-```bash
-# OR using Yarn
-yarn start
-```
+Then press `a` for an Android emulator, `i` for an iOS simulator, or scan the QR code with the Expo Go app on a device. `npm run android`, `npm run ios`, and `npm run web` start the dev server and open that platform directly.
 
-## Step 2: Start your Application
+See the [Expo docs](https://docs.expo.dev/get-started/set-up-your-environment/) for setting up emulators and simulators.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## What's inside
 
-### For Android
+- `App.tsx` wraps `src/Main.tsx` in the React-Redux `Provider`.
+- `src/app/store.ts` sets up the store with `combineSlices` and `configureStore`, and exports a `makeStore` helper for tests.
+- `src/app/hooks.ts` exports pre-typed `useAppSelector` and `useAppDispatch` hooks.
+- `src/features/counter` is a `createSlice` example with a thunk.
+- `src/features/quotes` is an RTK Query example using `createApi`.
+- `src/utils/test-utils.tsx` exports `renderWithProviders` for tests that need a store.
 
-```bash
-# using npm
-npm run android
-```
+Tests use Jest with `jest-expo` and React Native Testing Library. Linting and formatting use [oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter).
 
-```bash
-# OR using Yarn
-yarn android
-```
+## Scripts
 
-### For iOS
-
-```bash
-# using npm
-npm run ios
-```
-
-```bash
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your Expo App. :partying_face:
+- `npm start` - start the Expo dev server
+- `npm run android` / `npm run ios` / `npm run web` - start the dev server and open that platform
+- `npm test` - run the Jest tests
+- `npm run lint` - lint with oxlint
+- `npm run format` - format with oxfmt
+- `npm run type-check` - run the TypeScript compiler
+- `npm run build` - export an Android JS bundle with `expo export`

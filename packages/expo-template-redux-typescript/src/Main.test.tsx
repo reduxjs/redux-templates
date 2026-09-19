@@ -2,8 +2,25 @@ import { act, screen } from "@testing-library/react-native"
 import { Main } from "./Main"
 import { renderWithProviders } from "./utils/test-utils"
 
-test("Main should have correct initial render", () => {
-  renderWithProviders(<Main />)
+// The `Quotes` feature fetches from dummyjson.com on mount. Expo's `fetch`
+// implementation is stubbed out under `jest-expo`, so answer the request
+// with a fixed payload instead of hitting the network.
+beforeEach(() => {
+  jest.spyOn(globalThis, "fetch").mockResolvedValue(
+    new Response(
+      JSON.stringify({
+        quotes: [{ id: 1, quote: "Testing is fun.", author: "Redux" }],
+        total: 1,
+        skip: 0,
+        limit: 1,
+      }),
+      { headers: { "content-type": "application/json" } },
+    ),
+  )
+})
+
+test("Main should have correct initial render", async () => {
+  await renderWithProviders(<Main />)
 
   const countLabel = screen.getByLabelText("Count")
 
@@ -15,10 +32,13 @@ test("Main should have correct initial render", () => {
   // Initial state: count should be 0, incrementValue should be 2
   expect(countLabel).toHaveTextContent("0")
   expect(incrementValueInput).toHaveDisplayValue("2")
+
+  // The quotes request resolves and renders the mocked quote
+  expect(await screen.findByText(/testing is fun/i)).toBeOnTheScreen()
 })
 
 test("Increment value and Decrement value should work as expected", async () => {
-  const { user } = renderWithProviders(<Main />)
+  const { user } = await renderWithProviders(<Main />)
 
   const countLabel = screen.getByLabelText("Count")
 
@@ -36,7 +56,7 @@ test("Increment value and Decrement value should work as expected", async () => 
 })
 
 test("Add Amount should work as expected", async () => {
-  const { user } = renderWithProviders(<Main />)
+  const { user } = await renderWithProviders(<Main />)
 
   const countLabel = screen.getByLabelText("Count")
 
@@ -62,7 +82,7 @@ test("Add Amount should work as expected", async () => {
 })
 
 it("Add Async should work as expected", async () => {
-  const { user } = renderWithProviders(<Main />)
+  const { user } = await renderWithProviders(<Main />)
 
   const addAsyncButton = screen.getByText("Add Async")
 
@@ -104,7 +124,7 @@ it("Add Async should work as expected", async () => {
 })
 
 test("Add If Odd should work as expected", async () => {
-  const { user } = renderWithProviders(<Main />)
+  const { user } = await renderWithProviders(<Main />)
 
   const countLabel = screen.getByLabelText("Count")
 
