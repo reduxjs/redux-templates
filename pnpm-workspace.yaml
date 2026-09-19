@@ -5,8 +5,5 @@ packages:
 # node_modules layout (Metro and Expo expect it).
 nodeLinker: hoisted
 
-# The root scripts use `$INIT_CWD`; emulate a POSIX shell on Windows.
-shellEmulator: true
-
 allowBuilds:
   esbuild: true

@@ -60,14 +60,6 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
         run: echo "TEMP=$USERPROFILE\AppData\Local\Temp" >> $GITHUB_ENV
 
-      - name: Set up JDK for the React Native build
-        if: matrix.package == 'expo-template-redux-typescript'
-        uses: actions/setup-java@v4
-        with:
-          java-version: "21.x"
-          distribution: "temurin"
-          cache: "gradle"
-
       - name: Scaffold, install, test, lint, and build ${{ matrix.package }}
         run: pnpm test:templates ${{ matrix.package }}
 

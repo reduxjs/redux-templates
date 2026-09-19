@@ -20,4 +20,6 @@ The older Create-React-App and React Native CLI templates were removed. Their la
 
 ## Contributing
 
-This repo uses [pnpm](https://pnpm.io/) workspaces. Run `pnpm install` at the root, then work inside a package folder as you would in a standalone project. `pnpm test:templates` copies each template into a temp folder the same way `tiged` would and runs its install, test, lint, and build scripts.
+This repo uses [pnpm](https://pnpm.io/) workspaces. Run `pnpm install` at the root, then work inside a package folder as you would in a standalone project. Each package has its own `lint`, `format`, `type-check`, and `test` scripts; the root scripts only cover the repo tooling in `scripts/`. Linting and formatting use [oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter).
+
+`pnpm test:templates` copies each template into a temp folder the same way `tiged` would and runs its install, test, lint, and build scripts. On Windows, set `TEMP` to the long form of your temp folder first (for example `export TEMP="$USERPROFILE\AppData\Local\Temp"`); the default 8.3 short path breaks `vite build`.
