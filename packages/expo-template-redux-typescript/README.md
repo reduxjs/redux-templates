@@ -36,7 +36,7 @@ See the [Expo docs](https://docs.expo.dev/get-started/set-up-your-environment/) 
 - `src/features/quotes` is an RTK Query example using `createApi`.
 - `src/utils/test-utils.tsx` exports `renderWithProviders` for tests that need a store.
 
-Tests use Jest with `jest-expo` and React Native Testing Library. Linting and formatting use [oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter).
+Tests use Jest with `jest-expo` and React Native Testing Library. Note that RNTL's `render` is async, so `renderWithProviders` must be awaited, and tests that mount components using RTK Query need to mock `fetch` (see `src/Main.test.tsx`) because `jest-expo` stubs Expo's native `fetch`. Linting and formatting use [oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter).
 
 ## Scripts
 
