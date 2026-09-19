@@ -23,14 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-typesversions
-.cache
-.yarnrc
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
-*.tgz
+.yalc/
+yalc.lock
