@@ -1,5 +1,5 @@
 import { makeStore } from "../../app/store"
-import type { CounterSliceState } from "./counterSlice"
+import type { CounterState } from "./counterSlice"
 import {
   counterSlice,
   decrement,
@@ -9,7 +9,7 @@ import {
 } from "./counterSlice"
 
 describe("counter reducer", () => {
-  const initialState: CounterSliceState = {
+  const initialState: CounterState = {
     value: 3,
     status: "idle",
   }

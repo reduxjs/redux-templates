@@ -7,7 +7,7 @@ import type { AppThunk, RootState } from "../../app/store"
 import { fetchCount } from "./counterAPI"
 
 // Define the TS type for the counter slice's state
-export interface CounterState {
+export type CounterState = {
   value: number
   status: "idle" | "loading" | "failed"
 }
