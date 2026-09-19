@@ -1,9 +1,9 @@
 import js from "@eslint/js"
+import { defineConfig } from "eslint/config"
 import prettierConfig from "eslint-config-prettier/flat"
-import type { ConfigArray } from "typescript-eslint"
-import { config, configs } from "typescript-eslint"
+import { configs } from "typescript-eslint"
 
-const eslintConfig: ConfigArray = config(
+const eslintConfig = defineConfig(
   {
     name: "global-ignores",
     ignores: [
@@ -14,14 +14,10 @@ const eslintConfig: ConfigArray = config(
       "**/temp/",
       "**/.temp/",
       "**/.tmp/",
-      "**/.yarn/",
       "**/coverage/",
       "packages/rtk-app-structure-example",
       "packages/vite-template-redux",
-      "packages/react-native-template-redux-typescript/template",
       "packages/expo-template-redux-typescript",
-      "packages/cra-template-redux/template",
-      "packages/cra-template-redux-typescript/template",
     ],
   },
   {

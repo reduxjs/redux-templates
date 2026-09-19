@@ -6,6 +6,8 @@ Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Test
 npx tiged reduxjs/redux-templates/packages/vite-template-redux my-app
 ```
 
+Or try it in the browser: [Open in StackBlitz](https://stackblitz.com/github/reduxjs/redux-templates/tree/master/packages/vite-template-redux)
+
 ## Goals
 
 - Easy migration from Create React App or Vite

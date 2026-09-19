@@ -31,10 +31,7 @@
   },
   "exclude": [
     "dist",
-    "packages/cra-template-redux/template",
-    "packages/cra-template-redux-typescript/template",
     "packages/expo-template-redux-typescript",
-    "packages/react-native-template-redux-typescript/template",
     "packages/rtk-app-structure-example",
     "packages/vite-template-redux"
   ]

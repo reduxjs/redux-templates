@@ -18,14 +18,6 @@ coverage/
 
 typesversions
 .cache
-.yarnrc
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
 *.tgz
 
 tsconfig.vitest-temp.json
@@ -33,5 +25,6 @@ tsconfig.vitest-temp.json
 # Ignore template lock files
 /packages/**/package-lock.json
 /packages/**/yarn.lock
+/packages/**/pnpm-lock.yaml
 
 .eslintcache

@@ -1,12 +1,13 @@
 import js from "@eslint/js"
 import prettierConfig from "eslint-config-prettier/flat"
+import { defineConfig } from "eslint/config"
 import jestPlugin from "eslint-plugin-jest"
 import reactPlugin from "eslint-plugin-react"
 import reactHooksPlugin from "eslint-plugin-react-hooks"
 import globals from "globals"
-import { config, configs } from "typescript-eslint"
+import { configs } from "typescript-eslint"
 
-const eslintConfig = config(
+const eslintConfig = defineConfig(
   {
     name: "global-ignores",
     ignores: [
@@ -17,7 +18,6 @@ const eslintConfig = config(
       "**/temp/",
       "**/.temp/",
       "**/.tmp/",
-      "**/.yarn/",
       "**/coverage/",
     ],
   },

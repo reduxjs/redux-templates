@@ -1,63 +1,77 @@
 name: CI
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
 
 defaults:
   run:
     shell: bash
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint and type-check the repo tooling
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm format-check
+
+      - run: pnpm lint
+
+      - run: pnpm type-check
+
   test:
     runs-on: ${{ matrix.os }}
-    name: Test and lint ${{ matrix.packages }} on Node.js ${{ matrix.node }} and ${{ matrix.os }}
+    name: Test ${{ matrix.package }} on ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        node: [22.x]
         os: [ubuntu-latest, windows-latest]
-        packages:
-          [
-            "cra-template-redux",
-            "cra-template-redux-typescript",
-            "expo-template-redux-typescript",
-            "react-native-template-redux-typescript",
-            "vite-template-redux",
-          ]
+        package:
+          - expo-template-redux-typescript
+          - rtk-app-structure-example
+          - vite-template-redux
 
     steps:
-      - name: Checkout repository for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          node-version: 22.x
+          cache: pnpm
 
-      - name: Checkout repository for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: actions/checkout@v4
+      - run: pnpm install --frozen-lockfile
 
-      - name: Setup Node.js ${{ matrix.node }} for ${{ matrix.packages }} on ${{ matrix.os }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-          check-latest: true
-
-      - name: Set up environment variables for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
+      - name: Set up environment variables
         if: ${{ matrix.os == 'windows-latest' }}
         run: echo "TEMP=$USERPROFILE\AppData\Local\Temp" >> $GITHUB_ENV
 
-      - name: Set up JDK for React Native build for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        if: matrix.packages == 'react-native-template-redux-typescript' || matrix.packages == 'expo-template-redux-typescript'
+      - name: Set up JDK for the React Native build
+        if: matrix.package == 'expo-template-redux-typescript'
         uses: actions/setup-java@v4
         with:
           java-version: "21.x"
           distribution: "temurin"
           cache: "gradle"
 
-      - name: Mock the templates for ${{ matrix.packages }} on ${{ matrix.node }} and ${{ matrix.os }}
-        run: npx -y tsx@latest scripts/mockTemplates.mts ${{ matrix.packages }}
+      - name: Scaffold, install, test, lint, and build ${{ matrix.package }}
+        run: pnpm test:templates ${{ matrix.package }}
 
       - name: Did we fail?
         if: failure()
-        working-directory: packages/${{ matrix.packages }}
+        working-directory: packages/${{ matrix.package }}
         run: ls -R
