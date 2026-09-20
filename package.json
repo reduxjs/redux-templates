@@ -13,24 +13,19 @@
     "directory": "."
   },
   "scripts": {
-    "format": "prettier --config=$INIT_CWD/prettier.config.mjs --write $INIT_CWD",
-    "format-check": "prettier --config=$INIT_CWD/prettier.config.mjs --check $INIT_CWD",
-    "lint": "eslint --config=$INIT_CWD/eslint.config.mts $INIT_CWD",
-    "lint-fix": "eslint --config=$INIT_CWD/eslint.config.mts $INIT_CWD --fix",
-    "type-check": "tsc -p $INIT_CWD/tsconfig.json --noEmit",
+    "format": "oxfmt",
+    "format-check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint-fix": "oxlint --fix",
+    "type-check": "tsc -p tsconfig.json --noEmit",
     "test:templates": "tsx scripts/mockTemplates.mts"
   },
   "devDependencies": {
-    "@eslint/js": "^9.23.0",
-    "@types/node": "^22.14.0",
-    "eslint": "^9.23.0",
-    "eslint-config-prettier": "^10.1.1",
-    "jiti": "^2.4.2",
-    "prettier": "^3.5.3",
-    "rimraf": "^6.0.1",
+    "@types/node": "^24.13.3",
+    "oxfmt": "^0.68.0",
+    "oxlint": "^1.83.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.29.0"
+    "typescript": "~6.0.2"
   },
   "packageManager": "pnpm@11.5.0"
 }

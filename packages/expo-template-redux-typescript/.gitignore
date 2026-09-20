@@ -2,16 +2,15 @@
 
 # dependencies
 node_modules/
-.yarn/
-package-lock.json
-yarn.lock
 
 # Expo
 .expo/
 dist/
 web-build/
+expo-env.d.ts
 
 # Native
+.kotlin/
 *.orig.*
 *.jks
 *.p8
@@ -37,8 +36,12 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-# IDE
-.vscode
+# generated native folders
+/ios
+/android
+
+# build output
+build/
 
 .yalc/
 yalc.lock

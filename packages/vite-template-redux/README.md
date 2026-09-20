@@ -1,29 +1,31 @@
 # vite-template-redux
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+The official Redux + TypeScript template for [Vite](https://vite.dev/). Uses [Redux Toolkit](https://redux-toolkit.js.org/), [React Redux](https://react-redux.js.org/), [Vitest](https://vitest.dev/), and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 ```sh
 npx tiged reduxjs/redux-templates/packages/vite-template-redux my-app
+cd my-app
+npm install
 ```
 
 Or try it in the browser: [Open in StackBlitz](https://stackblitz.com/github/reduxjs/redux-templates/tree/master/packages/vite-template-redux)
 
-## Goals
+## What's inside
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+- `src/app/store.ts` - the Redux store, set up with `combineSlices` and `configureStore`, plus a `makeStore` factory and the `RootState` / `AppDispatch` types
+- `src/app/hooks.ts` - pre-typed `useAppSelector` and `useAppDispatch`
+- `src/features/counter` - a `createSlice` example with a thunk, plus tests
+- `src/features/quotes` - an RTK Query API slice fetching from a public API
+- `src/utils/test-utils.tsx` - a `renderWithProviders` helper for testing components that use the store
+
+Linting and formatting use [oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter).
 
 ## Scripts
 
-- `dev`/`start` - start dev server and open browser
+- `dev` / `start` - start the dev server
 - `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
-
-## Inspiration
-
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+- `preview` - preview the production build locally
+- `test` - run the tests once
+- `lint` / `lint:fix` - lint with oxlint
+- `format` / `format:check` - format with oxfmt
+- `type-check` - run the TypeScript compiler without emitting

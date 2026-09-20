@@ -2,25 +2,29 @@
   "name": "rtk-app-structure-example",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "start": "vite",
     "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format:check": "oxfmt --check",
+    "format": "oxfmt",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.6.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-redux": "^9.2.0"
+    "@reduxjs/toolkit": "^2.12.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-redux": "^9.3.0"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.4"
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxfmt": "^0.68.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
   }
 }
