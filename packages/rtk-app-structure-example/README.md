@@ -12,6 +12,8 @@ npm install
 
 Or try it in the browser: [Open in StackBlitz](https://stackblitz.com/github/reduxjs/redux-templates/tree/master/packages/rtk-app-structure-example)
 
+The `overrides` field in `package.json` pins `rolldown` to 1.2.8 because 1.2.9 crashes on startup inside StackBlitz's WebContainer ([stackblitz/webcontainer-core#2167](https://github.com/stackblitz/webcontainer-core/issues/2167)). It has no effect in the pnpm workspace; npm applies it when the folder is installed on its own. Remove it once rolldown ships a fix.
+
 ## What's inside
 
 - `src/app/store.ts` - the Redux store, set up with `configureStore`, and the `RootState` / `AppDispatch` types
