@@ -65,5 +65,4 @@ jobs:
 
       - name: Did we fail?
         if: failure()
-        working-directory: packages/${{ matrix.package }}
-        run: ls -R
+        run: ls -R packages/${{ matrix.package }} 2>/dev/null || ls -R examples/${{ matrix.package }}

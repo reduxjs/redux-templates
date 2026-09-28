@@ -5,12 +5,12 @@ This slimmed-down version of [the Redux Toolkit template for Vite](https://githu
 It's used in the ["Redux Essentials" tutorial Part 2](https://redux.js.org/tutorials/essentials/part-2-app-structure) as an embedded example to help teach Redux app structure.
 
 ```sh
-npx tiged reduxjs/redux-templates/packages/rtk-app-structure-example my-app
+npx tiged reduxjs/redux-templates/examples/rtk-app-structure-example my-app
 cd my-app
 npm install
 ```
 
-Or try it in the browser: [Open in StackBlitz](https://stackblitz.com/github/reduxjs/redux-templates/tree/master/packages/rtk-app-structure-example)
+Or try it in the browser: [Open in StackBlitz](https://stackblitz.com/github/reduxjs/redux-templates/tree/master/examples/rtk-app-structure-example)
 
 The `overrides` field in `package.json` pins `rolldown` to 1.2.8 because 1.2.9 crashes on startup inside StackBlitz's WebContainer ([stackblitz/webcontainer-core#2167](https://github.com/stackblitz/webcontainer-core/issues/2167)). It has no effect in the pnpm workspace; npm applies it when the folder is installed on its own. Remove it once rolldown ships a fix.
 
