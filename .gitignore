@@ -26,5 +26,8 @@ tsconfig.vitest-temp.json
 /packages/**/package-lock.json
 /packages/**/yarn.lock
 /packages/**/pnpm-lock.yaml
+/examples/**/package-lock.json
+/examples/**/yarn.lock
+/examples/**/pnpm-lock.yaml
 
 .eslintcache

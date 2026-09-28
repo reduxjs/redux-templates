@@ -1,16 +1,19 @@
 # Redux Project Templates
 
-This monorepo contains the official Redux templates for Vite and Expo.
+This monorepo contains the official Redux templates for Vite and Expo, plus small example apps used by the Redux docs.
 
-For installation and setup instructions, see the README file in each project template folder under `./packages/`.
+For installation and setup instructions, see the README file in each folder.
 
-Currently, this repo contains these templates:
+Templates, in `./packages/`:
 
 - `vite-template-redux`: Vite, with TypeScript
 - `expo-template-redux-typescript`: Expo, with TypeScript
+
+Docs examples, in `./examples/`:
+
 - `rtk-app-structure-example`: A standalone example of the Redux Toolkit app structure used in the Redux Essentials tutorial
 
-Each template is a plain project. Copy one with [tiged](https://github.com/tiged/tiged):
+Each template and example is a plain project. Copy one with [tiged](https://github.com/tiged/tiged):
 
 ```sh
 npx tiged reduxjs/redux-templates/packages/vite-template-redux my-app

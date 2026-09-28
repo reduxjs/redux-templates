@@ -4,5 +4,5 @@
   "arrowParens": "avoid",
   "printWidth": 80,
   "sortPackageJson": false,
-  "ignorePatterns": ["packages/", "pnpm-lock.yaml"]
+  "ignorePatterns": ["packages/", "examples/", "pnpm-lock.yaml"]
 }

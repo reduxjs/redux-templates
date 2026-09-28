@@ -8,7 +8,7 @@
     "correctness": "error",
     "suspicious": "warn"
   },
-  "ignorePatterns": ["packages/"],
+  "ignorePatterns": ["packages/", "examples/"],
   "rules": {
     "typescript/consistent-type-definitions": ["error", "type"],
     "typescript/consistent-type-imports": [

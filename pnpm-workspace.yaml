@@ -1,5 +1,6 @@
 packages:
   - packages/*
+  - examples/*
 
 # The templates are shipped as standalone npm projects, so keep a flat
 # node_modules layout (Metro and Expo expect it).
